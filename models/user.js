@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-//const bcrypt = require("bcrypt");
+const bcrypt = require("bcrypt");
 
 const UserSchema  = new mongoose.Schema({
     Name: {
@@ -67,7 +67,7 @@ const UserSchema  = new mongoose.Schema({
     }
 });
 
-/*
+
 UserSchema.statics.authenticate = function(Name, Password, callback){
  User.findOne({
      name:name
@@ -105,7 +105,7 @@ User.find({
 })
 })
 */
-/*
+
 UserSchema.pre("save", function(next){
     const user  = this;
     bcrypt.hash(user.Password, 10,(err, hash)=>{
@@ -116,7 +116,7 @@ UserSchema.pre("save", function(next){
         next();
     });
 });
-*/
+
 
 const User = mongoose.model("User", UserSchema); 
 module.exports = User;
