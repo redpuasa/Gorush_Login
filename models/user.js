@@ -35,7 +35,6 @@ const UserSchema  = new mongoose.Schema({
     },
     Contact_1:{
         type: String,
-        unique: true,
         required: true,
         trim: true
     },
@@ -48,27 +47,26 @@ const UserSchema  = new mongoose.Schema({
         type: String,
         trim: true
     },
-    Paying_1:{
+    Pay_MOH:{
         type: String,
     },
     Jpmc:{
         type: String,
         trim: true
     },
-    Paying_2:{
+    Pay_JPMC:{
         type: String,
     },
     Panaga:{
         type: String,
         trim: true
     },
-    Paying_3:{
+    Pay_PHC:{
         type: String,
     }
 });
 
-
-UserSchema.statics.authenticate = function(Name, Password, callback){
+UserSchema.statics.authenticate = function(name, password, callback){
  User.findOne({
      name:name
  }).exec(function(error,user){
@@ -79,7 +77,7 @@ UserSchema.statics.authenticate = function(Name, Password, callback){
          err.status = 401;
          console.log(err);
      }// if user exists
-     bcrypt.compare(Password, user.Password, function(error,result){
+     bcrypt.compare(password, user.password, function(error,result){
          if(result === true){
              return callback(null, user);
          } else {
@@ -90,29 +88,13 @@ UserSchema.statics.authenticate = function(Name, Password, callback){
 
 }
 
-/*
-UserSchema.pre("save", function(next){
-const self = this;
-User.find({
- name: self.name
-}, function(err, docs){
-    if(!docs.length){
-        next();
-    } else{
-        console.log("user exists", self.name);
-        next();
-    }
-})
-})
-*/
-
 UserSchema.pre("save", function(next){
     const user  = this;
-    bcrypt.hash(user.Password, 10,(err, hash)=>{
+    bcrypt.hash(user.password, 10,(err, hash)=>{
         if(err){
             return next();
         }
-        user.Password = hash;
+        user.password = hash;
         next();
     });
 });

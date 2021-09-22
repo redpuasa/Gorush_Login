@@ -21,11 +21,11 @@ router.post('/validation', (req, res) => {
         Contact_1: req.body.contact_1,
         Contact_2: req.body.contact_2,
         Bruhims: req.body.bruhims,
-        Paying_1: req.body.paying_1,
+        Pay_MOH: req.body.radioMOH,
         Jpmc: req.body.jpmc,
-        Paying_2: req.body.paying_2,
+        Pay_JPMC: req.body.radioJPMC,
         Panaga: req.body.panaga,
-        Paying_3: req.body.paying_3,
+        Pay_PHC: req.body.radioPHC,
     });
     user.save(function (err) {
     if (err) {
@@ -42,5 +42,21 @@ router.post('/validation', (req, res) => {
     }
     });
 })
+
+router.get('/login', (req, res) => {
+    res.render('login');
+})
+
+router.post("/welcome", (req,res) =>{
+//use authenticate method here
+User.authenticate(req.body.name, req.body.password, (error, user) =>{
+ if(error || !user){
+res.render("error")
+ } else {
+res.render("welcome")
+ }
+
+})
+});
 
 module.exports = router;
