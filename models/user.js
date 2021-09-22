@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const bcrypt = require("bcrypt");
+//const bcrypt = require("bcrypt");
 
 const UserSchema  = new mongoose.Schema({
     Name: {
@@ -11,7 +11,6 @@ const UserSchema  = new mongoose.Schema({
     Password: {
         type: String,
         required: true,
-        minlength : 8,
         trim: true
     },
     Kampong:{
@@ -42,57 +41,34 @@ const UserSchema  = new mongoose.Schema({
     },
     Contact_2:{
         type: String,
-        required: true,
         trim: true
     },
-    Pharmacy:{
-        type: Boolean,
-        required: true,
-        trim: true
-    },
+    
     Bruhims:{
         type: String,
-        required: true,
         trim: true
     },
     Paying_1:{
-        type: Boolean,
-        required: true,
-        trim: true
+        type: String,
     },
     Jpmc:{
         type: String,
-        required: true,
         trim: true
     },
     Paying_2:{
-        type: Boolean,
-        required: true,
-        trim: true
+        type: String,
     },
     Panaga:{
         type: String,
-        required: true,
         trim: true
     },
     Paying_3:{
-        type: Boolean,
-        required: true,
-        trim: true
-    },
-    Zalora:{
-        type: Boolean,
-        required: true,
-        trim: true
-    },
-    LocalDeli:{
-        type: Boolean,
-        required: true,
-        trim: true
-    },
+        type: String,
+    }
 });
 
-UserSchema.statics.authenticate = function(name, password, callback){
+/*
+UserSchema.statics.authenticate = function(Name, Password, callback){
  User.findOne({
      name:name
  }).exec(function(error,user){
@@ -103,7 +79,7 @@ UserSchema.statics.authenticate = function(name, password, callback){
          err.status = 401;
          console.log(err);
      }// if user exists
-     bcrypt.compare(password, user.password, function(error,result){
+     bcrypt.compare(Password, user.Password, function(error,result){
          if(result === true){
              return callback(null, user);
          } else {
@@ -129,19 +105,18 @@ User.find({
 })
 })
 */
-
+/*
 UserSchema.pre("save", function(next){
     const user  = this;
-    bcrypt.hash(user.password, 10,(err, hash)=>{
+    bcrypt.hash(user.Password, 10,(err, hash)=>{
         if(err){
             return next();
         }
-        user.password = hash;
+        user.Password = hash;
         next();
     });
 });
+*/
 
-
-const User = mongoose.model("User", UserSchema); //create a mongoose model based on UserSchema 
-//and call it User and save it as a variable called User. Nice
+const User = mongoose.model("User", UserSchema); 
 module.exports = User;
