@@ -50,13 +50,13 @@ router.get('/login', (req, res) => {
 router.post("/welcome", (req,res) =>{
 //use authenticate method here
 User.authenticate(req.body.name, req.body.password, (error, user) =>{
- if(error || !user){
-res.render("error")
- } else {
-res.render("welcome")
- }
+        if(error || !user){
+            res.render("error")
+        } else {
+            res.render("welcome")
+        }
 
-})
+    })
 });
 
 module.exports = router;
