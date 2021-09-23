@@ -2,66 +2,66 @@ const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
 
 const UserSchema  = new mongoose.Schema({
-    Name: {
+    name: {
         type: String,
         lowercase: true,
         required: true,
         trim: true
     },
-    Password: {
+    password: {
         type: String,
         required: true,
         trim: true
     },
-    Kampong:{
+    kampong:{
         type: String,
         required: true,
         trim: true
     },
-    Jalan:{
+    jalan:{
         type: String,
         required: true,
         trim: true
     },
-    Simpang:{
+    simpang:{
         type: String,
         required: true,
         trim: true
     },
-    House_Number:{
+    house_Number:{
         type: String,
         required: true,
         trim: true
     },
-    Contact_1:{
+    contact_1:{
         type: String,
         required: true,
         trim: true
     },
-    Contact_2:{
+    contact_2:{
         type: String,
         trim: true
     },
     
-    Bruhims:{
+    bruhims:{
         type: String,
         trim: true
     },
-    Pay_MOH:{
+    pay_MOH:{
         type: String,
     },
-    Jpmc:{
-        type: String,
-        trim: true
-    },
-    Pay_JPMC:{
-        type: String,
-    },
-    Panaga:{
+    jpmc:{
         type: String,
         trim: true
     },
-    Pay_PHC:{
+    pay_JPMC:{
+        type: String,
+    },
+    panaga:{
+        type: String,
+        trim: true
+    },
+    pay_PHC:{
         type: String,
     }
 });
