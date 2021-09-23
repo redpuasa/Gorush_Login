@@ -9,8 +9,8 @@ router.get('/', (req, res) => {
 
 router.post('/validation', (req, res) => {  
     console.log(req.body.name)
-    //console.log(req.body.address_1)
-    //console.log(req.body.paying_2)
+    console.log(req.body.address_1)
+    console.log(req.body.bruhims)
     let user = new User({
         name: req.body.name,
         password: req.body.password,
@@ -31,10 +31,10 @@ router.post('/validation', (req, res) => {
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			//title: 'Error page',
-                //head: 'Username already exist',
-                //message: 'Please use a different username',
-    			//href: "signup"
+    			title: 'Error page',
+                head: 'Username already exist',
+                message: 'Please use a different username',
+    			href: "signup"
     		});
     	}
     } else {
