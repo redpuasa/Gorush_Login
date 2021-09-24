@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container"> 
+        <h1 class="mx-auto">Patient's Profile</h1>
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- Patient profile name to dob -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Name: <%= name %></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>IC Number: <%= icNumber %></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Date of Birth: <%= dob %></p>
+                    </div>
+                </div>
+                <!-- ./Patient profile name to dob -->
+
+                <hr>
+
+                <!-- Contact -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Contact Number: <%= contact_1 %></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Additional Contact Number: <%= contact_2 %></p>
+                    </div>
+                </div>
+                <!-- ./ Contact -->
+
+                <hr>
+
+                <!-- Address -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Address:</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>House Number:<%= house_Number %> <br>
+                            Simpang: <%= simpang %> <br>
+                            Jalan: <%= jalan %> <br>
+                            Kampong: <%= kampong %>
+                        </p>
+                    </div>
+                </div>
+                <!-- ./ Address -->
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2>MOH</h2>
+                        <p><%= bruhims %></p>
+                        <p><%= pay_MOH %></p>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h2>JPMC/PJSC</h2>
+                        <p><%= jpmc %></p>
+                        <p><%= pay_JPMC %></p>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h2>PHC</h2>
+                        <p><%= panaga %></p>
+                        <p><%= pay_PHC %></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>

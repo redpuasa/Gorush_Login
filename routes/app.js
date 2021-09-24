@@ -50,13 +50,31 @@ router.get('/login', (req, res) => {
 router.post("/welcome", (req,res) =>{
 //use authenticate method here
 User.authenticate(req.body.name, req.body.password, (error, user) =>{
-        if(error || !user){
-            res.render("error")
+        if(!error || user){
+            res.render("dash", {
+                name:req.body.name,
+                icNumber: user.icNumber,
+                dob: user.dob,
+                kampong: user.kampong,
+                jalan: user.jalan,
+                simpang: user.simpang,
+                house_Number: user.house_Number,
+                contact_1: user.contact_1,
+                contact_2: user.contact_2,
+                bruhims: user.bruhims,
+                pay_MOH: user.pay_MOH,
+                jpmc: user.jpmc,
+                pay_JPMC: user.radioJPMC,
+                panaga: user.panaga,
+                pay_PHC: user.radioPHC,
+            })
         } else {
-            res.render("welcome")
+            res.render("error")
         }
 
     })
 });
+
+
 
 module.exports = router;
