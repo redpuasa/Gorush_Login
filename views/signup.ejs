@@ -57,19 +57,19 @@
                     <div class="form-group">
                         <input type="hidden" id="code" name="code">
                     </div>
-                    
+
                     <div class="mb-3">
                         <label for="contact_1" class="form-label">Contact Number</label>
-                        <input type="text" class="form-control" name="contact_1" id="contact_1" placeholder="">
+                        <input type="text" class="form-control" name="contact_1" id="contact_1" placeholder="Contact Number">
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" id="code" name="code">
+                        <input type="hidden" id="code1" name="code1">
                     </div>
 
                     <div class="mb-3">
                         <label for="contact_2" class="form-label">Additional Contact Number</label>
-                        <input type="text" class="form-control" name="contact_2" id="contact_2" placeholder="">
+                        <input type="text" class="form-control" name="contact_2" id="contact_2" placeholder="Additional Contact">
                     </div>
 
                     <label>MOH LOGO HERE [MINI]</label>
@@ -139,50 +139,8 @@
         </div>
     </div>
 </body>
-<script>
-const phoneInputField = document.querySelector("#contact_1");
-const phoneInput = window.intlTelInput(phoneInputField, {
-	preferredCountries: ["bn", "id", "my", "sg"],
-	utilsScript:
-	"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
 
-phoneInputField.addEventListener("input", function(){
-  validatePhone();
-  let code = phoneInput.getSelectedCountryData().dialCode;
-  document.getElementById("code").setAttribute("value", code);
-});
-
-function validatePhone(){
-  if(!(phoneInput.isValidNumber())) {
-    phoneInputField.setCustomValidity("Invalid Phone Number");
-  } else {
-    phoneInputField.setCustomValidity('');
-  }
-}
-
-const phoneInputField1 = document.querySelector("#contact_2");
-const phoneInput1 = window.intlTelInput(phoneInputField1, {
-	preferredCountries: ["bn", "id", "my", "sg"],
-	utilsScript:
-	"https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/utils.js",
-});
-
-phoneInputField1.addEventListener("input", function(){
-  validatePhone();
-  let code = phoneInput1.getSelectedCountryData().dialCode1;
-  document.getElementById("code").setAttribute("value", code1);
-});
-
-function validatePhone1(){
-  if(!(phoneInput1.isValidNumber())) {
-    phoneInputField1.setCustomValidity("Invalid Phone Number");
-  } else {
-    phoneInputField1.setCustomValidity('');
-  }
-}
-</script>
-
+<script src="js/phonecode.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>

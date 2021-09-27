@@ -11,8 +11,10 @@ router.get('/', (req, res) => {
 })
 
 router.post('/validation', (req, res) => {  
+    req.body.contact_1 = req.body.code + req.body.contact_1;
+    req.body.contact_2 = req.body.code1 + req.body.contact_2;
     console.log(req.body.name)
-    console.log(req.body.address_1)
+    console.log(req.body.contact_1)
     console.log(req.body.bruhims)
     let user = new User({
         name: req.body.name,

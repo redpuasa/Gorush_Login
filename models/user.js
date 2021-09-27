@@ -40,13 +40,13 @@ const UserSchema  = new mongoose.Schema({
         trim: true
     },
     contact_1:{
-        type: String,
-        required: true,
-        trim: true
+        type: Number,
+		required: true,
+		trim: true,
     },
     contact_2:{
-        type: String,
-        trim: true
+        type: Number,
+		trim: true,
     },
     
     bruhims:{
