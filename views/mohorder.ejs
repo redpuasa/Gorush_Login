@@ -20,10 +20,93 @@
         <h1 class="mx-auto">MOH Pharmacy</h1>
         <p>logo here</p>
         <div class="row">
-            <div class="col-sm-8">
-                
+            <div class="col-sm-8 m-3">
+
+                <form method="POST" action="/confirm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" value="name here" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="icNumber" class="form-label">IC Number</label>
+                        <input type="text" class="form-control" name="name" id="icNumber" value="xxxxxxxx" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bruhims" class="form-label">Bru-HIMs Number</label>
+                        <input type="text" class="form-control" name="bruhims" id="bruhims" placeholder="BNXXXXXXXX" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address_1" class="form-label">Delivery Address</label>
+                        <input type="text" class="form-control" name="address_1" id="address_1" value="Kampong" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_2" id="address_2" value="Jalan" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_3" id="address_3" value="Simpang" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_4" id="address_4" value="House Number/Unit Number" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contact_1" class="form-label">Contact Number</label>
+                        <input type="text" class="form-control" name="contact_1" id="contact_1" placeholder="+673 XXX XXXX" disabled>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contact_2" class="form-label">Additional Contact Number</label>
+                        <input type="text" class="form-control" name="contact_2" id="contact_2" placeholder="+673 XXX XXXX" disabled>
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="qo" class="form-label">Are you under Quarantine Order?</label>
+                        <input type="text" class="form-control" name="qo" id="bruhims" placeholder="qo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tod" class="form-label">Delivery Type</label>
+                        <input type="text" class="form-control" name="tod" id="tod" placeholder="delivery type">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dateSC" class="form-label">Collection Date</label>
+                        <input type="text" class="form-control" name="dateSC" id="dateSC" placeholder="Date for self collect">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pm" class="form-label">Payment Method</label>
+                        <input type="text" class="form-control" name="pm" id="pm" placeholder="payment">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="re" class="form-label">Remark</label>
+                        <input type="text" class="form-control" name="re" id="re" placeholder="remark">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="dateSubmit" id="dateSubmit" placeholder="live date for submission [will be hidden]" disable>
+                    </div>
+
+                    <button type="submit" class="btn btn-info mt-3">Submit</button>
+                </form>
+
             </div>
         </div>
     </div>
 </body>
+
+<script>
+    var today = new Date();
+    var date = today.getFullYear()+'-'+(today.getMonth()+1)+'-'+today.getDate();
+    var time = today.getHours() + ":" + today.getMinutes() + ":" + today.getSeconds();
+    var dateTime = date+' '+time;
+    document.getElementById("dateSubmit").value = dateTime;
+</script>
 </html>

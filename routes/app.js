@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user");
-const Order = require("../models/mohorder")
+const MohOrder = require("../models/mohorder")
 const { render } = require('ejs');
 
 router.get('/', (req, res) => {
@@ -54,8 +54,8 @@ User.authenticate(req.body.name, req.body.password, (error, user) =>{
         if(!error || user){
             res.render("dash", {
                 name:req.body.name,
-                icNumber: user.icNumber,
-                dob: user.dob,
+                //icNumber: user.icNumber,
+                //dob: user.dob,
                 kampong: user.kampong,
                 jalan: user.jalan,
                 simpang: user.simpang,
@@ -75,6 +75,46 @@ User.authenticate(req.body.name, req.body.password, (error, user) =>{
 
     })
 });
+
+router.get('/test', (req, res) => {
+    res.render('mohorder');
+})
+
+router.post('/validation', (req, res) => {  
+    console.log(req.body.name)
+    console.log(req.body.bruhims)
+    let order = new MohOrder({
+        name: req.body.name,
+        icNumber: req.body.icNumber,
+        bruhims: req.body.bruhims,
+        kampong: req.body.address_1,
+        jalan: req.body.address_2,
+        simpang: req.body.address_3,
+        house_Number: req.body.address_4,
+        contact_1: req.body.contact_1,
+        contact_2: req.body.contact_2,
+        qo: req.body.qo,
+        tod: req.body.tod,
+        pm: req.body.pm,
+        re: req.body.re,
+        dateSC: req.body.dateSC,
+        dateSubmit: req.body.dateSubmit,
+    });
+    order.save(function (err) {
+    if (err) {
+    	if (err.name === "MongoError" && err.code === 11000) {
+    		res.render('error', {
+    			title: 'Error page',
+                head: 'Invalid Order',
+                message: 'Please try again',
+    			href: "signup"
+    		});
+    	}
+    } else {
+    	res.render('validation');
+    }
+    });
+})
 
 
 
