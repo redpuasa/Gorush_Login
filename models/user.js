@@ -13,6 +13,12 @@ const UserSchema  = new mongoose.Schema({
         required: true,
         trim: true
     },
+    icNumber:{
+        type: String,
+    },
+    dob:{
+        type: Date
+    },
     kampong:{
         type: String,
         required: true,

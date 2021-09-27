@@ -13,6 +13,8 @@ router.post('/validation', (req, res) => {
     console.log(req.body.bruhims)
     let user = new User({
         name: req.body.name,
+        icNumber: req.body.icNumber,
+        dob: req.body.dob,
         password: req.body.password,
         kampong: req.body.address_1,
         jalan: req.body.address_2,
@@ -53,20 +55,20 @@ User.authenticate(req.body.name, req.body.password, (error, user) =>{
         if(!error || user){
             res.render("dash", {
                 name:req.body.name,
-                icNumber: user.icNumber,
-                dob: user.dob,
-                kampong: user.kampong,
-                jalan: user.jalan,
-                simpang: user.simpang,
-                house_Number: user.house_Number,
+                //icNumber: user.icNumber,
+                //dob: user.dob,
+                //kampong: user.kampong,
+                //jalan: user.jalan,
+                //simpang: user.simpang,
+                //house_Number: user.house_Number,
                 contact_1: user.contact_1,
-                contact_2: user.contact_2,
-                bruhims: user.bruhims,
-                pay_MOH: user.pay_MOH,
-                jpmc: user.jpmc,
-                pay_JPMC: user.radioJPMC,
-                panaga: user.panaga,
-                pay_PHC: user.radioPHC,
+                //contact_2: user.contact_2,
+                //bruhims: user.bruhims,
+                //pay_MOH: user.pay_MOH,
+                //jpmc: user.jpmc,
+                //pay_JPMC: user.radioJPMC,
+                //panaga: user.panaga,
+                //pay_PHC: user.radioPHC,
             })
         } else {
             res.render("error")
@@ -74,7 +76,5 @@ User.authenticate(req.body.name, req.body.password, (error, user) =>{
 
     })
 });
-
-
 
 module.exports = router;
