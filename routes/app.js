@@ -16,6 +16,8 @@ router.post('/validation', (req, res) => {
     console.log(req.body.bruhims)
     let user = new User({
         name: req.body.name,
+        icNumber: req.body.icNumber,
+        dob: req.body.dob,
         password: req.body.password,
         kampong: req.body.address_1,
         jalan: req.body.address_2,
