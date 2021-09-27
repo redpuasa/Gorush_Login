@@ -66,9 +66,9 @@ const UserSchema  = new mongoose.Schema({
     }
 });
 
-UserSchema.statics.authenticate = function(name, password, callback){
+UserSchema.statics.authenticate = function(contact_1, password, callback){
  User.findOne({
-     name:name
+     contact_1:contact_1
  }).exec(function(error,user){
      if(error){
          console.log(error)
@@ -98,7 +98,6 @@ UserSchema.pre("save", function(next){
         next();
     });
 });
-
 
 const User = mongoose.model("User", UserSchema); 
 module.exports = User;

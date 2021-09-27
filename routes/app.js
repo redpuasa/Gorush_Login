@@ -4,6 +4,8 @@ const User = require("../models/user");
 const MohOrder = require("../models/mohorder")
 const { render } = require('ejs');
 
+let currentUser = {};
+
 router.get('/', (req, res) => {
     res.render('signup');
 })
@@ -50,17 +52,17 @@ router.get('/login', (req, res) => {
 
 router.post("/welcome", (req,res) =>{
 //use authenticate method here
-User.authenticate(req.body.name, req.body.password, (error, user) =>{
+User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         if(!error || user){
             res.render("dash", {
-                name:req.body.name,
+                contact_1:req.body.contact_1,
+                name: user.name,
                 //icNumber: user.icNumber,
                 //dob: user.dob,
                 kampong: user.kampong,
                 jalan: user.jalan,
                 simpang: user.simpang,
                 house_Number: user.house_Number,
-                contact_1: user.contact_1,
                 contact_2: user.contact_2,
                 bruhims: user.bruhims,
                 pay_MOH: user.pay_MOH,
