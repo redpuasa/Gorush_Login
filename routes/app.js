@@ -4,8 +4,6 @@ const User = require("../models/user");
 const MohOrder = require("../models/mohorder")
 const { render } = require('ejs');
 
-let currentUser = {};
-
 router.get('/', (req, res) => {
     res.render('signup');
 })
