@@ -10,9 +10,10 @@ router.get('/', (req, res) => {
 
 router.post('/validation', (req, res) => {  
     req.body.contact_1 = req.body.code + req.body.contact_1;
-    req.body.contact_2 = req.body.code1 + req.body.contact_2;
+    req.body.contact_2 = req.body.code_2 + req.body.contact_2;
     console.log(req.body.name)
     console.log(req.body.contact_1)
+    console.log(req.body.contact_2)
     console.log(req.body.bruhims)
     let user = new User({
         name: req.body.name,
@@ -59,8 +60,8 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
             res.render("dash", {
                 contact_1:req.body.contact_1,
                 name: user.name,
-                //icNumber: user.icNumber,
-                //dob: user.dob,
+                icNumber: user.icNumber,
+                dob: user.dob,
                 kampong: user.kampong,
                 jalan: user.jalan,
                 simpang: user.simpang,
@@ -79,10 +80,6 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
 
     })
 });
-
-router.get('/test', (req, res) => {
-    res.render('mohorder');
-})
 
 router.post('/validation', (req, res) => {  
     console.log(req.body.name)
@@ -120,6 +117,8 @@ router.post('/validation', (req, res) => {
     });
 })
 
-
+router.get('/mohorder', (req, res) => {
+    res.render('mohorder');
+})
 
 module.exports = router;

@@ -4,7 +4,7 @@ const bcrypt = require("bcrypt");
 const UserSchema  = new mongoose.Schema({
     name: {
         type: String,
-        lowercase: true,
+        uppercase: true,
         required: true,
         trim: true
     },
@@ -17,7 +17,7 @@ const UserSchema  = new mongoose.Schema({
         type: String,
     },
     dob:{
-        type: Date
+        type: String
     },
     kampong:{
         type: String,

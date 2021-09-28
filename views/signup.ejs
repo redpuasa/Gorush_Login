@@ -12,7 +12,6 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
             crossorigin="anonymous">
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
@@ -28,13 +27,29 @@
                     </div>
 
                     <div class="mb-3">
+                        <label for="icNumber" class="form-label">IC-Number</label>
+                        <input type="text" class="form-control" name="icNumber" id="icNumber" placeholder="Enter IC Number">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="text" class="form-control" name="dob" id="dob" placeholder="Date of Birth [date picker]">
+                    </div>
+
+                    <div class="mb-3">
                         <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" placeholder="Enter Password" required>
+                        <input type="password" class="form-control" name="password" id="password" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" 
+                        title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" 
+                        placeholder="Enter Password" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="re_password" class="form-label">Re-enter Password</label>
-                        <input type="password" class="form-control" id="re_password" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" placeholder="Re-enter Password" required>
+                        <input type="password" class="form-control" id="re_password" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" 
+                        title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" 
+                        placeholder="Re-enter Password" required>
                     </div>
 
                     <div class="mb-3">
@@ -64,7 +79,7 @@
                     </div>
 
                     <div class="form-group">
-                        <input type="hidden" id="code1" name="code1">
+                        <input type="hidden" id="code_2" name="code_2">
                     </div>
 
                     <div class="mb-3">
