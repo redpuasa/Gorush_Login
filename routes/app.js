@@ -51,12 +51,11 @@ router.post('/login', (req, res) => {
     });
 })
 
-/*router.get('/login', (req, res) => {
+router.get('/login', (req, res) => {
     res.render('login');
-})*/
+})
 
 router.post("/dashboard", (req,res) =>{
-//use authenticate method here
 User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         if(!error || user){
             res.render("dash", {
@@ -79,7 +78,6 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         } else {
             res.render("error")
         }
-
     })
 });
 
@@ -119,11 +117,6 @@ router.post('/orderconfirmed', (req, res) => {
     });
 })
 
-router.get('/mohorder', (req, res) => {
-    res.render('mohorder',{
-        //name: user.name,
-        //contact_1: user.contact_1,
-    });
-})
+
 
 module.exports = router;
