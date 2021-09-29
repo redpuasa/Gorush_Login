@@ -4,7 +4,8 @@ const User = require("../models/user");
 const MohOrder = require("../models/mohorder")
 const { render } = require('ejs');
 
-//let currentUser = {};
+let userList = [];
+let currentUser = {};
 
 router.get('/', (req, res) => {
     res.render('signup');
@@ -13,10 +14,6 @@ router.get('/', (req, res) => {
 router.post('/login', (req, res) => {  
     req.body.contact_1 = req.body.code + req.body.contact_1;
     req.body.contact_2 = req.body.code_2 + req.body.contact_2;
-    console.log(req.body.name)
-    console.log(req.body.contact_1)
-    console.log(req.body.contact_2)
-    console.log(req.body.bruhims)
     let user = new User({
         name: req.body.name,
         icNumber: req.body.icNumber,
@@ -56,8 +53,11 @@ router.get('/login', (req, res) => {
 })
 
 router.post("/dashboard", (req,res) =>{
+//use authenticate method here
 User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         if(!error || user){
+            let success = false;
+            userList= [];
             res.render("dash", {
                 contact_1:req.body.contact_1,
                 name: user.name,
@@ -75,10 +75,15 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
                 panaga: user.panaga,
                 pay_PHC: user.radioPHC,
             })
+            currentUser = user;
+            success = true;
+            console.log(userList);
+            console.log(currentUser)
         } else {
             res.render("error")
-        }
+        }  
     })
+    
 });
 
 router.post('/orderconfirmed', (req, res) => {  
@@ -117,6 +122,19 @@ router.post('/orderconfirmed', (req, res) => {
     });
 })
 
-
+router.get('/mohorder', (req, res) => {
+    res.render('mohorder',{
+        name: currentUser.name,
+        icNumber: currentUser.icNumber,
+        dob: currentUser.dob,
+        kampong: currentUser.kampong,
+        jalan: currentUser.jalan,
+        simpang: currentUser.simpang,
+        house_Number: currentUser.house_Number,
+        contact_1: currentUser.contact_1,
+        contact_2: currentUser.contact_2,
+        bruhims: currentUser.bruhims,
+    });
+})
 
 module.exports = router;
