@@ -17,22 +17,22 @@
 </head>
 <body>
     <div class="container"> 
-        <h1 class="mx-auto">Patient's Profile</h1>
+        <h1 class="mx-auto" style="color: black;">Patient's Profile</h1>
         <div class="row">
             <div class="col-sm-6">
                 <!-- Patient profile name to dob -->
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Name:</p>
+                        <p style="color: black;">Name: <%= name %></p>
                     </div>
                     <div class="col-sm-6">
-                        <p>IC Number:</p>
+                        <p style="color: black;">IC Number: </p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Date of Birth:</p>
+                        <p style="color: black;">Date of Birth: </p>
                     </div>
                 </div>
                 <!-- ./Patient profile name to dob -->
@@ -42,10 +42,10 @@
                 <!-- Contact -->
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Contact Number:</p>
+                        <p style="color: black;">Contact Number: <%= contact_1 %>  </p>
                     </div>
                     <div class="col-sm-6">
-                        <p>Additional Contact Number:</p>
+                        <p style="color: black;">Additional Contact Number: <%= contact_2 %> </p>
                     </div>
                 </div>
                 <!-- ./ Contact -->
@@ -54,29 +54,30 @@
 
                 <!-- Address -->
                 <div class="row">
-                    <div class="col-sm-6">
-                        <p>Address:</p>
-                    </div>
-                </div>
-
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>House No.</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>Simpang</p>
-                    </div>
-                </div>
-                <div class="row">
-                    <div class="col-sm-6">
-                        <p>Jalan</p>
-                    </div>
-                    <div class="col-sm-6">
-                        <p>Kampong</p>
+                    <div class="col-sm-12">
+                        <p style="color: black;">Address:</p>
+                        <p style="color: black;"><%= house_Number %>, Simpang <%= simpang %>, Jalan <%= jalan %>, Kampong <%= kampong%></p>
                     </div>
                 </div>
                 <!-- ./ Address -->
 
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <h2 style="color: black;">MOH</h2>
+
+                        <p></p>
+                        <p></p>
+
+                        <p style="color: black;"><%= bruhims %></p>
+                        <p style="color: black;"><%= pay_MOH %></p>
+
+                        <a class="btn text-nowrap btn-info" id="" title="" role="button" href="/mohorder">Order</a> 
+
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>

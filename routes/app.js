@@ -4,11 +4,13 @@ const User = require("../models/user");
 const MohOrder = require("../models/mohorder")
 const { render } = require('ejs');
 
+//let currentUser = {};
+
 router.get('/', (req, res) => {
     res.render('signup');
 })
 
-router.post('/validation', (req, res) => {  
+router.post('/login', (req, res) => {  
     req.body.contact_1 = req.body.code + req.body.contact_1;
     req.body.contact_2 = req.body.code_2 + req.body.contact_2;
     console.log(req.body.name)
@@ -44,16 +46,16 @@ router.post('/validation', (req, res) => {
     		});
     	}
     } else {
-    	res.render('validation');
+    	res.render('login');
     }
     });
 })
 
-router.get('/login', (req, res) => {
+/*router.get('/login', (req, res) => {
     res.render('login');
-})
+})*/
 
-router.post("/welcome", (req,res) =>{
+router.post("/dashboard", (req,res) =>{
 //use authenticate method here
 User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         if(!error || user){
@@ -81,7 +83,7 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
     })
 });
 
-router.post('/validation', (req, res) => {  
+router.post('/orderconfirmed', (req, res) => {  
     console.log(req.body.name)
     console.log(req.body.bruhims)
     let order = new MohOrder({
@@ -112,13 +114,16 @@ router.post('/validation', (req, res) => {
     		});
     	}
     } else {
-    	res.render('validation');
+    	res.render('error');
     }
     });
 })
 
 router.get('/mohorder', (req, res) => {
-    res.render('mohorder');
+    res.render('mohorder',{
+        //name: user.name,
+        //contact_1: user.contact_1,
+    });
 })
 
 module.exports = router;
