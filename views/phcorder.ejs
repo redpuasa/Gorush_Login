@@ -17,7 +17,7 @@
 </head>
 <body>
     <div class="container"> 
-        <h1 class="mx-auto">MOH Pharmacy</h1>
+        <h1 class="mx-auto">Panaga Health Centre</h1>
         <p>logo here</p>
         <div class="row">
             <div class="col-sm-8 m-3">
@@ -34,8 +34,8 @@
                     </div>
 
                     <div class="mb-3">
-                        <label for="bruhims" class="form-label">Bru-HIMs Number</label>
-                        <input type="text" class="form-control" name="bruhims" id="bruhims" value="<%= bruhims %>" readonly="readonly">
+                        <label for="bruhims" class="form-label">Patient Number</label>
+                        <input type="text" class="form-control" name="panaga" id="panaga" value="<%= panaga %>" readonly="readonly">
                     </div>
 
                     <div class="mb-3">
@@ -67,17 +67,11 @@
                    
                     <div class="mb-3">
                         <label for="qo" class="form-label">Are you under Quarantine Order?</label>
-                        <input type="text" class="form-control" name="qo" id="bruhims" placeholder="qo">
+                        <input type="text" class="form-control" name="qo" id="qo" placeholder="qo">
                     </div>
 
                     <div class="mb-3">
-                        <label for="tod" class="form-label">Delivery Type</label>
-                        <input type="text" class="form-control" name="tod" id="tod" placeholder="delivery type">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="dateSC" class="form-label">Collection Date</label>
-                        <input type="text" class="form-control" name="dateSC" id="dateSC" placeholder="Date for self collect">
+                        <input type="text" class="form-control" name="tod" id="tod" value="Standard" hidden>
                     </div>
 
                     <div class="mb-3">
@@ -89,11 +83,8 @@
                         <label for="re" class="form-label">Remark</label>
                         <input type="text" class="form-control" name="re" id="re" placeholder="remark">
                     </div>
-<!--
-                    <div class="mb-3">
-                        <input type="date" class="form-control" name="dateSubmit" id="dateSubmit" placeholder="live date for submission [will be hidden]" readonly>
-                    </div>-->
-                    
+
+                    <input type="hidden" name="formMethod" value="PHCOrder">
                     <button type="submit" class="btn btn-info mt-3">Submit</button>
 
             </div>

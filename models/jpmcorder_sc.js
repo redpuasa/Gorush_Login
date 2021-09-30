@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const std_MohOrderSchema  = new mongoose.Schema({
-    bruhims:{
+const sc_JpmcOrderSchema  = new mongoose.Schema({
+    jpmc:{
         type: String,
         trim: true
     },
@@ -9,9 +9,6 @@ const std_MohOrderSchema  = new mongoose.Schema({
         trim: true,
     },
     icNumber:{
-        type: String,
-    },
-    address:{
         type: String,
     },
     contact_1:{
@@ -39,7 +36,10 @@ const std_MohOrderSchema  = new mongoose.Schema({
         type: Date,
         default: Date.now() + 8*60*60*1000, //+8 hours according to Brunei Time
     },
+    dateSc:{
+        type: String,
+    }
 });
 
-const std_MohOrder = mongoose.model("std_MohOrder", std_MohOrderSchema); 
-module.exports = std_MohOrder;
+const sc_JpmcOrder = mongoose.model("sc_JpmcOrder", sc_JpmcOrderSchema); 
+module.exports = sc_JpmcOrder;

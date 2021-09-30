@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const std_MohOrderSchema  = new mongoose.Schema({
-    bruhims:{
+const std_JpmcOrderSchema  = new mongoose.Schema({
+    jpmc:{
         type: String,
         trim: true
     },
@@ -41,5 +41,5 @@ const std_MohOrderSchema  = new mongoose.Schema({
     },
 });
 
-const std_MohOrder = mongoose.model("std_MohOrder", std_MohOrderSchema); 
-module.exports = std_MohOrder;
+const std_JpmcOrder = mongoose.model("std_JpmcOrder", std_JpmcOrderSchema); 
+module.exports = std_JpmcOrder;

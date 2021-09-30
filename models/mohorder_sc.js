@@ -1,5 +1,5 @@
 const mongoose = require("mongoose");
-const std_MohOrderSchema  = new mongoose.Schema({
+const sc_MohOrderSchema  = new mongoose.Schema({
     bruhims:{
         type: String,
         trim: true
@@ -9,9 +9,6 @@ const std_MohOrderSchema  = new mongoose.Schema({
         trim: true,
     },
     icNumber:{
-        type: String,
-    },
-    address:{
         type: String,
     },
     contact_1:{
@@ -39,7 +36,10 @@ const std_MohOrderSchema  = new mongoose.Schema({
         type: Date,
         default: Date.now() + 8*60*60*1000, //+8 hours according to Brunei Time
     },
+    dateSc:{
+        type: String,
+    }
 });
 
-const std_MohOrder = mongoose.model("std_MohOrder", std_MohOrderSchema); 
-module.exports = std_MohOrder;
+const sc_MohOrder = mongoose.model("sc_MohOrder", sc_MohOrderSchema); 
+module.exports = sc_MohOrder;

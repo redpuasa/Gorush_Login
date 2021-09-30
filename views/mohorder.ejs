@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container"> 
+        <h1 class="mx-auto">MOH Pharmacy</h1>
+        <p>logo here</p>
+        <div class="row">
+            <div class="col-sm-8 m-3">
+
+                <form method="POST" action="/confirm" id="MOHOrder">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" value="<%= name %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="icNumber" class="form-label">IC Number</label>
+                        <input type="text" class="form-control" name="name" id="icNumber" value="<%= icNumber %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="bruhims" class="form-label">Bru-HIMs Number</label>
+                        <input type="text" class="form-control" name="bruhims" id="bruhims" value="<%= bruhims %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address_1" class="form-label">Delivery Address</label>
+                        <input type="text" class="form-control" name="address_1" id="address_1" value="<%= kampong %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_2" id="address_2" value="<%= jalan %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_3" id="address_3" value="<%= simpang %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_4" id="address_4" value="<%= house_Number %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contact_1" class="form-label">Contact Number</label>
+                        <input type="text" class="form-control" name="contact_1" id="contact_1" value="<%= contact_1 %>" readonly="readonly">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="contact_2" class="form-label">Additional Contact Number</label>
+                        <input type="text" class="form-control" name="contact_2" id="contact_2" value="<%= contact_2 %>" readonly="readonly">
+                    </div>
+                   
+                    <div class="mb-3">
+                        <label for="qo" class="form-label">Are you under Quarantine Order?</label>
+                        <input type="text" class="form-control" name="qo" id="qo" placeholder="qo">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="location" class="form-label">Please state which health center that you go for your doctor's appoinment.</label>
+                        <input type="text" class="form-control" name="location" id="location" placeholder="qo">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="tod" id="tod">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pm" class="form-label">Payment Method</label>
+                        <input type="text" class="form-control" name="pm" id="pm" placeholder="payment">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="re" class="form-label">Remark</label>
+                        <input type="text" class="form-control" name="re" id="re" placeholder="remark">
+                    </div>
+
+                    <input type="hidden" name="formMethod" value="MOHOrder">
+                    <button type="submit" class="btn btn-info mt-3">Submit</button>
+
+            </div>
+        </div>
+    </div>
+</body>
+</html>
