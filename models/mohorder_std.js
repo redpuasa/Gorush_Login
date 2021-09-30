@@ -1,12 +1,12 @@
 const mongoose = require("mongoose");
-
-const MohOrderSchema  = new mongoose.Schema({
+const std_MohOrderSchema  = new mongoose.Schema({
     bruhims:{
         type: String,
         trim: true
     },
     name:{
         type: String,
+        trim: true,
     },
     icNumber:{
         type: String,
@@ -21,7 +21,7 @@ const MohOrderSchema  = new mongoose.Schema({
         type: String,
     },
     dob:{
-        type: Date,
+        type: String,
     },
     qo:{
         type: String,
@@ -37,11 +37,12 @@ const MohOrderSchema  = new mongoose.Schema({
     },
     dateSubmit:{
         type: Date,
+        default: Date.now,
     },
     dateSc:{
-        type: Date,
+        type: String,
     }
 });
 
-const MohOrder = mongoose.model("MohOrder", MohOrderSchema); 
-module.exports = MohOrder;
+const std_MohOrder = mongoose.model("std_MohOrder", std_MohOrderSchema); 
+module.exports = std_MohOrder;

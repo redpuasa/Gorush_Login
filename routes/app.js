@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const User = require("../models/user");
-const MohOrder = require("../models/mohorder")
+const std_MohOrder = require("../models/mohorder_std")
 const { render } = require('ejs');
 
 let userList = [];
@@ -57,7 +57,7 @@ router.post("/dashboard", (req,res) =>{
 User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         if(!error || user){
             let success = false;
-            userList= [];
+            //userList= [];
             res.render("dash", {
                 contact_1:req.body.contact_1,
                 name: user.name,
@@ -77,7 +77,7 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
             })
             currentUser = user;
             success = true;
-            console.log(userList);
+            //console.log(userList);
             console.log(currentUser)
         } else {
             res.render("error")
@@ -86,11 +86,13 @@ User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
     
 });
 
-router.post('/orderconfirmed', (req, res) => {  
+router.post('/confirm', (req, res) => {  
     console.log(req.body.name)
     console.log(req.body.bruhims)
-    let order = new MohOrder({
-        name: req.body.name,
+    console.log(req.body.qo)
+    console.log(req.body.contact_1)
+    let order = new std_MohOrder({
+        nvname: currentUser.name,
         icNumber: req.body.icNumber,
         bruhims: req.body.bruhims,
         kampong: req.body.address_1,
@@ -104,7 +106,6 @@ router.post('/orderconfirmed', (req, res) => {
         pm: req.body.pm,
         re: req.body.re,
         dateSC: req.body.dateSC,
-        dateSubmit: req.body.dateSubmit,
     });
     order.save(function (err) {
     if (err) {
@@ -117,13 +118,13 @@ router.post('/orderconfirmed', (req, res) => {
     		});
     	}
     } else {
-    	res.render('error');
+    	res.render('confirm');
     }
     });
 })
 
-router.get('/mohorder', (req, res) => {
-    res.render('mohorder',{
+router.get('/mohorder_std', (req, res) => {
+    res.render('mohorder_std',{
         name: currentUser.name,
         icNumber: currentUser.icNumber,
         dob: currentUser.dob,
