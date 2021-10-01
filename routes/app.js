@@ -1,4 +1,9 @@
 const express = require('express');
+const Vonage = require('@vonage/server-sdk')
+const vonage = new Vonage({
+    apiKey: "1c18ab21",
+    apiSecret: "dfvQQWqrmidr8B1m"
+})
 const router = express.Router();
 const User = require("../models/user");
 const stdMohOrder = require("../models/mohorder_std")
@@ -18,80 +23,9 @@ router.get('/', (req, res) => {
     res.render('signup');
 })
 
-router.post('/login', (req, res) => {  
-    req.body.contact_1 = req.body.code + req.body.contact_1;
-    req.body.contact_2 = req.body.code_2 + req.body.contact_2;
-    let user = new User({
-        name: req.body.name,
-        icNumber: req.body.icNumber,
-        dob: req.body.dob,
-        password: req.body.password,
-        kampong: req.body.address_1,
-        jalan: req.body.address_2,
-        simpang: req.body.address_3,
-        house_Number: req.body.address_4,
-        contact_1: req.body.contact_1,
-        contact_2: req.body.contact_2,
-        bruhims: req.body.bruhims,
-        pay_MOH: req.body.radioMOH,
-        jpmc: req.body.jpmc,
-        pay_JPMC: req.body.radioJPMC,
-        panaga: req.body.panaga,
-        pay_PHC: req.body.radioPHC,
-    });
-    user.save(function (err) {
-    if (err) {
-    	if (err.name === "MongoError" && err.code === 11000) {
-    		res.render('error', {
-    			title: 'Error page',
-                head: 'Username already exist',
-                message: 'Please use a different username',
-    			href: "signup"
-    		});
-    	}
-    } else {
-    	res.render('login');
-    }
-    });
-})
-
 router.get('/login', (req, res) => {
     res.render('login');
 })
-
-router.post("/dashboard", (req,res) =>{
-//use authenticate method here
-User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
-        if(!error || user){
-            let success = false;
-            //userList= [];
-            res.render("dash", {
-                contact_1:req.body.contact_1,
-                name: user.name,
-                icNumber: user.icNumber,
-                dob: user.dob,
-                kampong: user.kampong,
-                jalan: user.jalan,
-                simpang: user.simpang,
-                house_Number: user.house_Number,
-                contact_2: user.contact_2,
-                bruhims: user.bruhims,
-                pay_MOH: user.pay_MOH,
-                jpmc: user.jpmc,
-                pay_JPMC: user.radioJPMC,
-                panaga: user.panaga,
-                pay_PHC: user.radioPHC,
-            })
-            currentUser = user;
-            success = true;
-            //console.log(userList);
-            console.log(currentUser)
-        } else {
-            res.render("error")
-        }  
-    })
-    
-});
 
 router.get('/mohorder', (req, res) => {
     res.render('mohorder',{
@@ -123,6 +57,8 @@ router.get('/jpmcorder', (req, res) => {
     });
 })
 
+
+
 router.get('/phcorder', (req, res) => {
     res.render('phcorder',{
         name: currentUser.name,
@@ -137,6 +73,18 @@ router.get('/phcorder', (req, res) => {
         panaga: currentUser.panaga,
     });
 })
+
+router.post('/validation', (req, res) => {  
+    if(req.body.formMethod === "signup"){
+        postSignUp(req,res)
+    }
+})
+
+router.post("/dashboard", (req,res) =>{
+    if(req.body.formMethod === "Login"){
+        postLogin(req,res)
+    }
+});
 
 router.post('/confirm', (req, res) => {  
     if(req.body.formMethod === "MOHOrder"){
@@ -164,6 +112,75 @@ router.post('/confirm', (req, res) => {
         }
     }
 })
+
+function postSignUp(res,req){
+    req.body.contact_1 = req.body.code + req.body.contact_1;
+    req.body.contact_2 = req.body.code_2 + req.body.contact_2;
+    let user = new User({
+        name: req.body.name,
+        icNumber: req.body.icNumber,
+        dob: req.body.dob,
+        password: req.body.password,
+        kampong: req.body.address_1,
+        jalan: req.body.address_2,
+        simpang: req.body.address_3,
+        house_Number: req.body.address_4,
+        contact_1: req.body.contact_1,
+        contact_2: req.body.contact_2,
+        bruhims: req.body.bruhims,
+        pay_MOH: req.body.radioMOH,
+        jpmc: req.body.jpmc,
+        pay_JPMC: req.body.radioJPMC,
+        panaga: req.body.panaga,
+        pay_PHC: req.body.radioPHC,
+    });
+    user.save(function (err) {
+    if (err) {
+    	if (err.name === "MongoError" && err.code === 11000) {
+    		res.render('error', {
+    			title: 'Error page',
+                head: 'Username already exist',
+                message: 'Please use a different username',
+    			href: "signup"
+    		});
+    	}
+    } else {
+    	res.render('validation');
+    }
+    });
+}
+
+function postLogin(req,res){
+    User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
+        if(!error || user){
+            let success = false;
+            //userList= [];
+            res.render("dash", {
+                contact_1:req.body.contact_1,
+                name: user.name,
+                icNumber: user.icNumber,
+                dob: user.dob,
+                kampong: user.kampong,
+                jalan: user.jalan,
+                simpang: user.simpang,
+                house_Number: user.house_Number,
+                contact_2: user.contact_2,
+                bruhims: user.bruhims,
+                pay_MOH: user.pay_MOH,
+                jpmc: user.jpmc,
+                pay_JPMC: user.radioJPMC,
+                panaga: user.panaga,
+                pay_PHC: user.radioPHC,
+            })
+            currentUser = user;
+            success = true;
+            //console.log(userList);
+            console.log(currentUser)
+        } else {
+            res.render("error")
+        }  
+    })   
+}
 
 function standardMOH(req,res){
     let smorder = new stdMohOrder({
