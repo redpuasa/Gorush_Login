@@ -75,47 +75,9 @@ router.get('/phcorder', (req, res) => {
 })
 
 router.post('/validation', (req, res) => {  
-    if(req.body.formMethod === "signup"){
-        postSignUp(req,res)
-    }
-})
-
-router.post("/dashboard", (req,res) =>{
-    if(req.body.formMethod === "Login"){
-        postLogin(req,res)
-    }
-});
-
-router.post('/confirm', (req, res) => {  
-    if(req.body.formMethod === "MOHOrder"){
-        console.log(req.body.tod)
-        if(req.body.tod === "Standard"){
-            standardMOH(req,res);
-        }else if(req.body.tod === "Express"){
-            expressMOH(req,res);
-        }else if(req.body.tod === "Immediate"){
-            immediateMOH(req,res);
-        }else if(req.body.tod === "Self-Collect"){
-            selfMOH(req,res);
-        }
-    }else if(req.body.formMethod === "JPMCOrder"){
-        if(req.body.tod === "Standard"){
-            standardJPMC(req,res);
-        }else if(req.body.tod === "Express"){
-            expressJPMC(req,res);
-        }else if(req.body.tod === "Self-Collect"){
-            selfJPMC(req,res);
-        }
-    }else if(req.body.formMethod === "PHCOrder"){
-        if(req.body.tod === "Standard"){
-            standardPHC(req,res);
-        }
-    }
-})
-
-function postSignUp(res,req){
     req.body.contact_1 = req.body.code + req.body.contact_1;
     req.body.contact_2 = req.body.code_2 + req.body.contact_2;
+    console.log(req.body.name)
     let user = new User({
         name: req.body.name,
         icNumber: req.body.icNumber,
@@ -148,13 +110,12 @@ function postSignUp(res,req){
     	res.render('validation');
     }
     });
-}
+})
 
-function postLogin(req,res){
+router.post("/dashboard", (req,res) =>{
     User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
         if(!error || user){
             let success = false;
-            //userList= [];
             res.render("dash", {
                 contact_1:req.body.contact_1,
                 name: user.name,
@@ -174,13 +135,62 @@ function postLogin(req,res){
             })
             currentUser = user;
             success = true;
-            //console.log(userList);
             console.log(currentUser)
         } else {
             res.render("error")
         }  
-    })   
-}
+    })
+});
+
+router.post('/confirm', (req, res) => {  
+    if(req.body.formMethod === "MOHOrder"){
+        console.log(req.body.tod)
+        if(req.body.tod === "Standard"){
+            standardMOH(req,res);
+        }else if(req.body.tod === "Express"){
+            expressMOH(req,res);
+        }else if(req.body.tod === "Immediate"){
+            immediateMOH(req,res);
+        }else if(req.body.tod === "Self-Collect"){
+            selfMOH(req,res);
+        }
+    }else if(req.body.formMethod === "JPMCOrder"){
+        if(req.body.tod === "Standard"){
+            standardJPMC(req,res);
+        }else if(req.body.tod === "Express"){
+            expressJPMC(req,res);
+        }else if(req.body.tod === "Self-Collect"){
+            selfJPMC(req,res);
+        }
+    }else if(req.body.formMethod === "PHCOrder"){
+        if(req.body.tod === "Standard"){
+            standardPHC(req,res);
+        }
+    }
+})
+
+router.get('/edit', (req,res) => {
+    console.log(currentUser.name)
+    res.render('edit',{
+        name: currentUser.name,
+        icNumber: currentUser.icNumber,
+        dob: currentUser.dob,
+    })
+})
+
+router.post('/editconfirm', (req,res) => {
+    console.log(req.body.name)
+    console.log(currentUser._id)
+    User.findByIdAndUpdate({_id: currentUser._id}, {name: req.body.name}, (err,docs) => {
+        if(err){
+            console.log(err)
+            res.render('error')
+        } 
+        else res.render('editconfirm')
+    })
+})
+
+
 
 function standardMOH(req,res){
     let smorder = new stdMohOrder({
