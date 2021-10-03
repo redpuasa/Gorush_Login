@@ -31,6 +31,7 @@
     "express-layout": "^0.1.0",
     "express-session": "^1.17.2",
     "mongoose": "^6.0.7",
+    "nunjucks": "^3.2.3",
     "path": "^0.12.7",
     "serve": "^12.0.1"
   }

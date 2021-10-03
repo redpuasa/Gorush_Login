@@ -1,8 +1,10 @@
 const express = require('express');
 const Vonage = require('@vonage/server-sdk')
 const vonage = new Vonage({
-    apiKey: "1c18ab21",
-    apiSecret: "dfvQQWqrmidr8B1m"
+    apiKey:"6632d882",
+    apiSecret:"xqgTRoO9d94EdSTa"
+    //apiKey: "1c18ab21",
+    //apiSecret: "dfvQQWqrmidr8B1m"
 })
 const router = express.Router();
 const User = require("../models/user");
@@ -106,10 +108,37 @@ router.post('/validation', (req, res) => {
     			href: "signup"
     		});
     	}
-    } else {
-    	res.render('validation');
+    }else {
+        vonage.verify.request({
+            number: "6737257190",//change to user.contact_1
+            brand: "Go Rush"
+        }, (err,result) => {
+            console.log(result.status)
+            if(result.status != 0){
+                res.render("error")
+            }else{
+                res.render('validation', { requestId: result.request_id })
+            }
+        })
+        console.log(user.contact_1)
     }
     });
+})
+
+router.post("/login", (req,res) =>{
+    vonage.verify.check({
+        request_id: req.body.requestId,
+        code: req.body.code,
+    }, (err,result) => {
+        console.log(req.body.requestId)
+        console.log(req.body.code)
+        console.log(result.status)
+        if(result.status != 0){
+            res.render('error')
+        }else{
+            res.render('login')
+        }
+    })
 })
 
 router.post("/dashboard", (req,res) =>{
@@ -189,8 +218,6 @@ router.post('/editconfirm', (req,res) => {
         else res.render('editconfirm')
     })
 })
-
-
 
 function standardMOH(req,res){
     let smorder = new stdMohOrder({

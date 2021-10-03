@@ -12,18 +12,21 @@
             integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
             crossorigin="anonymous">
     <!-- Custom styles -->
-    <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 </head>
 <body>
     <div class="container my-5">
         <div class="row">
             <div class="col-sm-6 mx-auto">
-                <form method="POST" action="/dashboard">
-                    <div class="mb-3">
-                       
-                    </div>
+                <form method="POST" action="/login">
 
+                    <div class="mb-3">
+                        <input name="code" placeholder="Enter code">
+                        <input name="requestId" type="hidden" value="{{ requestId }}">
+                    </div>
+                    
                     <button type="submit" class="btn btn-info mt-3">Submit</button>
 
                 </form>
