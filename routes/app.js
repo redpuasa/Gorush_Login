@@ -80,6 +80,7 @@ router.post('/validation', (req, res) => {
     req.body.contact_1 = req.body.code + req.body.contact_1;
     req.body.contact_2 = req.body.code_2 + req.body.contact_2;
     console.log(req.body.name)
+    console.log()
     let user = new User({
         name: req.body.name,
         icNumber: req.body.icNumber,
@@ -97,6 +98,7 @@ router.post('/validation', (req, res) => {
         pay_JPMC: req.body.radioJPMC,
         panaga: req.body.panaga,
         pay_PHC: req.body.radioPHC,
+        status: req.body.status,
     });
     user.save(function (err) {
     if (err) {
@@ -110,14 +112,14 @@ router.post('/validation', (req, res) => {
     	}
     }else {
         vonage.verify.request({
-            number: "6737257190",//change to user.contact_1
+            number: user.contact_1,//change to user.contact_1
             brand: "Go Rush"
         }, (err,result) => {
             console.log(result.status)
             if(result.status != 0){
                 res.render("error")
             }else{
-                res.render('validation', { requestId: result.request_id })
+                res.render('validation', { requestId: result.request_id, contact_1: user.contact_1 })
             }
         })
         console.log(user.contact_1)
@@ -133,41 +135,57 @@ router.post("/login", (req,res) =>{
         console.log(req.body.requestId)
         console.log(req.body.code)
         console.log(result.status)
+        console.log(req.body.contact_1)
         if(result.status != 0){
             res.render('error')
         }else{
-            res.render('login')
+            User.findOneAndUpdate({contact_1: req.body.contact_1}, {status: req.body.status}, (err,docs) => {
+                if(err){
+                    console.log(err)
+                    res.render('error')
+                } 
+                else {
+                    console.log(req.body.status)
+                    res.render('login')
+                }
+            })
         }
     })
 })
 
 router.post("/dashboard", (req,res) =>{
     User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
-        if(!error || user){
-            let success = false;
-            res.render("dash", {
-                contact_1:req.body.contact_1,
-                name: user.name,
-                icNumber: user.icNumber,
-                dob: user.dob,
-                kampong: user.kampong,
-                jalan: user.jalan,
-                simpang: user.simpang,
-                house_Number: user.house_Number,
-                contact_2: user.contact_2,
-                bruhims: user.bruhims,
-                pay_MOH: user.pay_MOH,
-                jpmc: user.jpmc,
-                pay_JPMC: user.radioJPMC,
-                panaga: user.panaga,
-                pay_PHC: user.radioPHC,
-            })
-            currentUser = user;
-            success = true;
-            console.log(currentUser)
-        } else {
-            res.render("error")
-        }  
+        console.log(user.status)
+        let status = user.status;
+        if(status === "Active"){
+            if(!error || user || status === "Active"){
+                let success = false;
+                res.render("dash", {
+                    contact_1:req.body.contact_1,
+                    name: user.name,
+                    icNumber: user.icNumber,
+                    dob: user.dob,
+                    kampong: user.kampong,
+                    jalan: user.jalan,
+                    simpang: user.simpang,
+                    house_Number: user.house_Number,
+                    contact_2: user.contact_2,
+                    bruhims: user.bruhims,
+                    pay_MOH: user.pay_MOH,
+                    jpmc: user.jpmc,
+                    pay_JPMC: user.radioJPMC,
+                    panaga: user.panaga,
+                    pay_PHC: user.radioPHC,
+                })
+                currentUser = user;
+                success = true;
+                console.log(currentUser)
+            } else {
+                res.render("error")
+            }  
+        }else{
+            res.render('error')
+        }
     })
 });
 
@@ -482,7 +500,6 @@ function standardPHC(req,res){
     }
     });
 }
-
 
 
 module.exports = router;

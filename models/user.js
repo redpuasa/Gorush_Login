@@ -69,6 +69,9 @@ const UserSchema  = new mongoose.Schema({
     },
     pay_PHC:{
         type: String,
+    },
+    status:{
+        type: String,
     }
 });
 
