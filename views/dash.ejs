@@ -27,13 +27,13 @@
                         <p>Name: {{ name }}</p>
                     </div>
                     <div class="col-sm-6">
-                        <p>IC Number:  </p>
+                        <p>IC Number: {{ icNumber }} </p>
                     </div>
                 </div>
 
                 <div class="row">
                     <div class="col-sm-6">
-                        <p>Date of Birth: </p>
+                        <p>Date of Birth: {{ dob }}</p>
                     </div>
                 </div>
                 <!-- ./Patient profile name to dob -->
@@ -57,7 +57,7 @@
                 <div class="row">
                     <div class="col-sm-12">
                         <p>Address:</p>
-                        <p><%= house_Number %>, Simpang <%= simpang %>, Jalan <%= jalan %>, Kampong <%= kampong%></p>
+                        <p>{{ house_Number }}, Simpang {{ simpang }} , Jalan {{ jalan }}, Kampong {{ kampong }}</p>
                     </div>
                 </div>
                 <!-- ./ Address -->
@@ -68,22 +68,22 @@
 
                     <div class="col-sm-4">
                         <h2>MOH</h2>
-                        <p><%= bruhims %></p>
-                        <p><%= pay_MOH %></p>
+                        <p>{{ bruhims }}</p>
+                        <p>{{ pay_MOH }}</p>
                         <a class="btn text-nowrap btn-info"  title="" role="button" href="/mohorder">Standard</a>
                     </div>
 
                     <div class="col-sm-4">
                         <h2>JPMC/PJSC</h2>
-                        <p><%= jpmc %></p>
-                        <p><%= pay_JPMC %></p>
+                        <p>{{ jpmc }}</p>
+                        <p>{{ pay_JPMC }}</p>
                         <a class="btn text-nowrap btn-info"  title="" role="button" href="/jpmcorder">Order</a> 
                     </div>
 
                     <div class="col-sm-4">
                         <h2>PANAGA</h2>
-                        <p><%= panaga %></p>
-                        <p><%= pay_PHC %></p>
+                        <p>{{ panaga }}</p>
+                        <p>{{ pay_PHC }}</p>
                         <a class="btn text-nowrap btn-info"  title="" role="button" href="/phcorder">Order</a> 
                     </div>
 
