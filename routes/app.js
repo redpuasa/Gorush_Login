@@ -119,9 +119,9 @@ router.post('/validation', (req, res) => {
             if(result.status != 0){
                 res.render("error",{
                     title: 'Error page',
-                    head: '{{ result.status }}',
-                    message: 'Please use a different username',
-                    href: "signup"
+                    head: '{{ status }}',
+                    //message: 'Please use a different username',
+                    //href: "signup"
                 }
                 )
             }else{
