@@ -15,7 +15,7 @@ const UserSchema  = new mongoose.Schema({
     },
     icNumber:{
         type: String,
-    },
+    },//passport
     dob:{
         type: String
     },
@@ -72,7 +72,7 @@ const UserSchema  = new mongoose.Schema({
     },
     status:{
         type: String,
-    }
+    },
 });
 
 UserSchema.statics.authenticate = function(contact_1, password, callback){

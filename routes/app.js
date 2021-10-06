@@ -1,10 +1,10 @@
 const express = require('express');
 const Vonage = require('@vonage/server-sdk')
 const vonage = new Vonage({
-    apiKey:"6632d882",
-    apiSecret:"xqgTRoO9d94EdSTa"
-    //apiKey: "1c18ab21",
-    //apiSecret: "dfvQQWqrmidr8B1m"
+    //apiKey:"6632d882",
+    //apiSecret:"xqgTRoO9d94EdSTa"
+    apiKey: "1c18ab21",
+    apiSecret: "dfvQQWqrmidr8B1m"
 })
 const router = express.Router();
 const User = require("../models/user");
@@ -117,7 +117,13 @@ router.post('/validation', (req, res) => {
         }, (err,result) => {
             console.log(result.status)
             if(result.status != 0){
-                res.render("error")
+                res.render("error",{
+                    title: 'Error page',
+                    head: '{{ result.status }}',
+                    message: 'Please use a different username',
+                    href: "signup"
+                }
+                )
             }else{
                 res.render('validation', { requestId: result.request_id, contact_1: user.contact_1 })
             }
