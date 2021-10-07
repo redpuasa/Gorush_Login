@@ -1,6 +1,7 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-
+const Patient = require("../models/patient")
+let patientList = []
 const UserSchema  = new mongoose.Schema({
     name: {
         type: String,
@@ -15,7 +16,10 @@ const UserSchema  = new mongoose.Schema({
     },
     icNumber:{
         type: String,
-    },//passport
+    },
+    passport:{
+        type: String,
+    },
     dob:{
         type: String
     },
@@ -88,7 +92,7 @@ UserSchema.statics.authenticate = function(contact_1, password, callback){
      }// if user exists
      bcrypt.compare(password, user.password, function(error,result){
          if(result === true){
-             return callback(null, user);
+            return callback(null, user);
          } else {
              return callback()
          }

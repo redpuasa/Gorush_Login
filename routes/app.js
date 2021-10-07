@@ -7,7 +7,8 @@ const vonage = new Vonage({
     apiSecret: "dfvQQWqrmidr8B1m"
 })
 const router = express.Router();
-const User = require("../models/user");
+const User = require("../models/user")
+const Patient = require("../models/patient")
 const stdMohOrder = require("../models/mohorder_std")
 const expMohOrder = require("../models/mohorder_exp")
 const imeMohOrder = require("../models/mohorder_ime")
@@ -18,8 +19,8 @@ const scJpmcOrder = require("../models/jpmcorder_sc")
 const stdPhcOrder = require("../models/phcorder_std")
 const { render } = require('ejs');
 
-//let userList = [];
 let currentUser = {};
+let patientList= [];
 
 router.get('/', (req, res) => {
     res.render('signup');
@@ -27,6 +28,41 @@ router.get('/', (req, res) => {
 
 router.get('/login', (req, res) => {
     res.render('login');
+})
+
+router.get('/addition', (req,res) => {
+    console.log(currentUser._id)
+    res.render('addition',{
+        userID: currentUser._id,
+    });
+})
+
+router.post('/addconfirm', (req,res) =>{
+    let patient = new Patient({
+        userID: req.body.userID,
+        name: req.body.name,
+        icNumber: req.body.icNumber,
+        bruhims: req.body.bruhims,
+        pay_MOH: req.body.radioMOH,
+        jpmc: req.body.jpmc,
+        pay_JPMC: req.body.radioJPMC,
+        panaga: req.body.panaga,
+        pay_PHC: req.body.radioPHC,
+    });
+    patient.save(function (err) {
+    if (err) {
+    	if (err.name === "MongoError" && err.code === 11000) {
+    		res.render('error', {
+    			title: 'Error page',
+                head: 'Invalid Order',
+                message: 'Please try again',
+    			href: "signup"
+    		});
+    	}
+    } else {
+    	res.render('addconfirm');
+    }
+    });
 })
 
 router.get('/mohorder', (req, res) => {
@@ -117,13 +153,7 @@ router.post('/validation', (req, res) => {
         }, (err,result) => {
             console.log(result.status)
             if(result.status != 0){
-                res.render("error",{
-                    title: 'Error page',
-                    head: '{{ status }}',
-                    //message: 'Please use a different username',
-                    //href: "signup"
-                }
-                )
+                res.render("error")
             }else{
                 res.render('validation', { requestId: result.request_id, contact_1: user.contact_1 })
             }
@@ -161,13 +191,20 @@ router.post("/login", (req,res) =>{
 
 router.post("/dashboard", (req,res) =>{
     User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
-        console.log(user.status)
+        let patientList = [];
+        Patient.find({}, (error, patients) =>{
+            patients.forEach(function(patient){
+                patientList.push(patient)
+                console.log(patient.name)
+                console.log(patient.userID)
+                })
+                console.log(patientList)
         let status = user.status;
         if(status === "Active"){
-            if(!error || user || status === "Active"){
-                let success = false;
+            if(!error || user){
                 res.render("dash", {
                     contact_1:req.body.contact_1,
+                    userID: user._id,
                     name: user.name,
                     icNumber: user.icNumber,
                     dob: user.dob,
@@ -179,19 +216,21 @@ router.post("/dashboard", (req,res) =>{
                     bruhims: user.bruhims,
                     pay_MOH: user.pay_MOH,
                     jpmc: user.jpmc,
-                    pay_JPMC: user.radioJPMC,
+                    pay_JPMC: user.pay_JPMC,
                     panaga: user.panaga,
-                    pay_PHC: user.radioPHC,
+                    pay_PHC: user.pay_PHC,
+                    patient: patientList,
                 })
+                //console.log(currentUser)
+                //console.log(patientList)
                 currentUser = user;
-                success = true;
-                console.log(currentUser)
-            } else {
+            }else {
                 res.render("error")
             }  
-        }else{
+        }else {
             res.render('error')
         }
+        })
     })
 });
 
@@ -523,6 +562,5 @@ function standardPHC(req,res){
     }
     });
 }
-
 
 module.exports = router;

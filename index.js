@@ -3,13 +3,13 @@ const express = require('express')
 const app = express()
 const routes = require('./routes/app');
 const bodyParser = require('body-parser')
-const nunjucks = require('nunjucks')
+//const nunjucks = require('nunjucks')
 //nunjucks.configure('views', { express: app })
 app.use(express.urlencoded({extended:true}));
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({ extended: false }))
-nunjucks.configure('views', { express: app })
+//nunjucks.configure('views', { express: app })
 // Static Files
 app.use(express.static('public'))
 app.set('view engine', 'ejs')
