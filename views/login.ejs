@@ -13,6 +13,8 @@
             crossorigin="anonymous">
     <!-- Custom styles -->
     <link href="css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
 
 </head>
 <body>
@@ -20,9 +22,14 @@
         <div class="row">
             <div class="col-sm-6 mx-auto">
                 <form method="POST" action="/dashboard">
+                    
+                    <div class="form-group">
+                        <input type="hidden" id="code" name="code">
+                    </div>
+
                     <div class="mb-3">
-                        <label for="contact_1" class="form-label">Phone Number</label>
-                        <input type="text" class="form-control" name="contact_1" id="contact_1" placeholder="Phone Number" required>
+                        <label for="contact_1" class="form-label">Contact Number</label>
+                        <input type="text" class="form-control" name="contact_1" id="contact_1" placeholder="Contact Number">
                     </div>
 
                     <div class="mb-3">
@@ -41,6 +48,7 @@
     </div>
 </body>
 
+<script src="js/phonecode.js"></script>
 <!-- Bootstrap core JavaScript -->
 <script src="https://code.jquery.com/jquery-3.6.0.min.js" integrity="sha256-/xUj+3OJU5yExlq6GSYGSHk7tPXikynS7ogEvDej/m4=" crossorigin="anonymous"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>

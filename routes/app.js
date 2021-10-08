@@ -18,6 +18,7 @@ const expJpmcOrder = require("../models/jpmcorder_exp")
 const scJpmcOrder = require("../models/jpmcorder_sc")
 const stdPhcOrder = require("../models/phcorder_std")
 const { render } = require('ejs');
+const { request } = require('express');
 
 let currentUser = {};
 let patientList= [];
@@ -168,9 +169,6 @@ router.post("/login", (req,res) =>{
         request_id: req.body.requestId,
         code: req.body.code,
     }, (err,result) => {
-        console.log(req.body.requestId)
-        console.log(req.body.code)
-        console.log(result.status)
         console.log(req.body.contact_1)
         if(result.status != 0){
             res.render('error')
@@ -190,7 +188,8 @@ router.post("/login", (req,res) =>{
 })
 
 router.post("/dashboard", (req,res) =>{
-    User.authenticate(req.body.contact_1, req.body.password, (error, user) =>{
+    let contact_1 = req.body.code + req.body.contact_1
+    User.authenticate(contact_1, req.body.password, (error, user) =>{
         let patientList = [];
         Patient.find({}, (error, patients) =>{
             patients.forEach(function(patient){

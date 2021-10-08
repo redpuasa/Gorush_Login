@@ -80,25 +80,24 @@ const UserSchema  = new mongoose.Schema({
 });
 
 UserSchema.statics.authenticate = function(contact_1, password, callback){
- User.findOne({
-     contact_1:contact_1
- }).exec(function(error,user){
-     if(error){
-         console.log(error)
-     } else if(!user){
-         var err = new Error("User not found");
-         err.status = 401;
-         console.log(err);
-     }// if user exists
-     bcrypt.compare(password, user.password, function(error,result){
-         if(result === true){
-            return callback(null, user);
-         } else {
-             return callback()
-         }
-     })
- })
-
+    User.findOne({
+        contact_1:contact_1
+    }).exec(function(error,user){
+        if(error){
+            console.log(error)
+        } else if(!user){
+            var err = new Error("User not found");
+            err.status = 401;
+            console.log(err);
+        }// if user exists
+        bcrypt.compare(password, user.password, function(error,result){
+            if(result === true){
+                return callback(null, user);
+            } else {
+                return callback()
+            }
+        })
+    })
 }
 
 UserSchema.pre("save", function(next){

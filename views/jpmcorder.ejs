@@ -23,6 +23,9 @@
             <div class="col-sm-8 m-3">
 
                 <form method="POST" action="/confirm">
+
+                    <p>Button here will be used for order form</p>
+
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
                         <input type="text" class="form-control" name="name" id="name" value="{{name}}" readonly="readonly">
@@ -66,22 +69,107 @@
                     </div>
                    
                     <div class="mb-3">
-                        <label for="qo" class="form-label">Are you under Quarantine Order?</label>
-                        <input type="text" class="form-control" name="qo" id="qo" placeholder="qo">
+                        <label for="pharmacy" class="form-label">Please select your pharmacy</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioPharmacy" id="radioJPMC" value="JPMC">
+                        <label class="form-check-label" for="radioJPMC">JPMC</label>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioPharmacy" id="radioPJSC" value="PJSC">
+                        <label class="form-check-label" for="radioPJSC">PJSC</label>
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="tod" id="tod" value="Standard" hidden>
+                        <label for="qo" class="form-label">Are you under Quarantine Order?</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioQO" id="radioYes" value="Yes">
+                        <label class="form-check-label" for="radioYes">Yes</label>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioQO" id="radioNo" value="No">
+                        <label class="form-check-label" for="radioNo">No</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="qo" class="form-label">Upload your Bruhealth Code</label><br>
+                        <input type="file" name="bruhealthCode" id="bruhealthCode" value="Standard">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="tod" class="form-label">Please select your delivery method</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioTOD" id="radioSTD" value="Standard">
+                        <label class="form-check-label" for="radioSTD">Standard</label>
+                    </div>
+                    
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioTOD" id="radioEXP" value="Express">
+                        <label class="form-check-label" for="radioEXP">Express</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioTOD" id="radioSC" value="Self Collect">
+                        <label class="form-check-label" for="radioSC">Self Collect</label>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="scDate" class="form-label">Self-Collection Date</label>
+                        <input type="text" class="form-control" name="scDate" id="scDate" placeholder="Will appear when customer choose self collect option">
                     </div>
 
                     <div class="mb-3">
                         <label for="pm" class="form-label">Payment Method</label>
-                        <input type="text" class="form-control" name="pm" id="pm" placeholder="payment">
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioPAY" id="radioCASH" value="Cash">
+                        <label class="form-check-label" for="radioCASH">Cash</label>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioPAY" id="radioBT" value="Bank Transfer">
+                        <label class="form-check-label" for="radioBT">Bank Transfer</label>
                     </div>
 
                     <div class="mb-3">
                         <label for="re" class="form-label">Remark</label>
                         <input type="text" class="form-control" name="re" id="re" placeholder="remark">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="pm" class="form-label">Would you like Go Rush to notify you for your next medicine pick-up from the pharmacy?</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioNOTI" id="radioYES_1" value="Yes">
+                        <label class="form-check-label" for="radioYES_1">Yes</label>
+                    </div>
+                    
+                    <P>IF YES, THE OPTION BELOW WILL APPEAR</P>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
+                            <label class="form-check-label" for="radioYES_1">Every Two Weeks</label>
+                        </div>
+                        <div class="form-check">
+                            <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
+                            <label class="form-check-label" for="radioYES_1">Every Month</label>
+                        </div>
+                        <div class="form-check mb-3">
+                            <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
+                            <label class="form-check-label" for="radioYES_1">Every Two Months</label>
+                        </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioNOTI" id="radioNO_1" value="No">
+                        <label class="form-check-label" for="radioNO_1">No</label>
                     </div>
 
                     <input type="hidden" name="formMethod" value="JPMCOrder">
