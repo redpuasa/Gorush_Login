@@ -1,6 +1,6 @@
 const mongoose = require("mongoose");
-const ime_MohOrderSchema  = new mongoose.Schema({
-    bruhims:{
+const sc_PanagaOrderSchema  = new mongoose.Schema({
+    panaga:{
         type: String,
         trim: true
     },
@@ -44,5 +44,5 @@ const ime_MohOrderSchema  = new mongoose.Schema({
     },
 });
 
-const ime_MohOrder = mongoose.model("ime_MohOrder", ime_MohOrderSchema); 
-module.exports = ime_MohOrder;
+const sc_PanagaOrder = mongoose.model("sc_PanagaOrder", sc_PanagaOrderSchema); 
+module.exports = sc_PanagaOrder;

@@ -11,6 +11,9 @@ const exp_MohOrderSchema  = new mongoose.Schema({
     icNumber:{
         type: String,
     },
+    passport:{
+        type: String,
+    },
     address:{
         type: String,
     },

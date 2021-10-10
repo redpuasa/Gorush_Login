@@ -21,53 +21,70 @@
         <p>logo here</p>
         <div class="row">
             <div class="col-sm-8 m-3">
+                
+                <!-- Patient profile name to dob -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Name:&nbsp; <%= name %> </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>IC Number:&nbsp;<%= icNumber %></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Date of Birth:&nbsp;<%= dob %></p>
+                    </div>
+                </div>
+                <!-- ./Patient profile name to dob -->
+
+                <hr>
+
+                <!-- Contact -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Contact Number:&nbsp;<%= contact_1 %></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Additional Contact Number:&nbsp;<%= contact_2  %></p>
+                    </div>
+                </div>
+                <!-- ./ Contact -->
+
+                <hr>
+
+                <!-- Address -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>Address:</p>
+                        <p><%= house_Number %>, Simpang&nbsp;<%= simpang %>, Jalan&nbsp;<%= jalan %>, Kampong&nbsp;<%= kampong %></p>
+                    </div>
+                </div>
+                <!-- ./ Address -->
+
+                <hr>
+
+                <div class="row">
+                    <div class="col-sm-4">
+                        <p>Patient Number: <%= jpmc %></p>
+                    </div>
+                </div>
+
+                <hr>
 
                 <form method="POST" action="/confirm">
-
-                    <p>Button here will be used for order form</p>
-
-                    <div class="mb-3">
-                        <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{name}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="icNumber" class="form-label">IC Number</label>
-                        <input type="text" class="form-control" name="name" id="icNumber" value="{{icNumber}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="bruhims" class="form-label">Patient Number</label>
-                        <input type="text" class="form-control" name="jpmc" id="bruhims" value="{{jpmc}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="address_1" class="form-label">Delivery Address</label>
-                        <input type="text" class="form-control" name="address_1" id="address_1" value="{{kampong}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="address_2" id="address_2" value="{{jalan}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="address_3" id="address_3" value="{{simpang}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <input type="text" class="form-control" name="address_4" id="address_4" value="{{house_Number}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="contact_1" class="form-label">Contact Number</label>
-                        <input type="text" class="form-control" name="contact_1" id="contact_1" value="{{contact_1}}" readonly="readonly">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="contact_2" class="form-label">Additional Contact Number</label>
-                        <input type="text" class="form-control" name="contact_2" id="contact_2" value="{{contact_2}}" readonly="readonly">
-                    </div>
-                   
+                    <input type="text" class="form-control" name="name" id="name" value="<%= name %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="name" id="icNumber" value="<%= icNumber %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="jpmc" id="jpmc" value="<%= jpmc %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="dob" id="dob" value="<%= dob %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_1" id="address_1" value="<%= kampong %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_2" id="address_2" value="<%= jalan %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_3" id="address_3" value="<%= simpang %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_4" id="address_4" value="<%= house_Number %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="contact_1" id="contact_1" value="<%= contact_1 %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="contact_2" id="contact_2" value="<%= contact_2  %>" readonly="readonly" hidden>
+                    
                     <div class="mb-3">
                         <label for="pharmacy" class="form-label">Please select your pharmacy</label>
                     </div>
@@ -116,7 +133,7 @@
                     </div>
 
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="radioTOD" id="radioSC" value="Self Collect">
+                        <input class="form-check-input" type="radio" name="radioTOD" id="radioSC" value="Self-Collect">
                         <label class="form-check-label" for="radioSC">Self Collect</label>
                     </div>
 
@@ -152,29 +169,32 @@
                         <input class="form-check-input" type="radio" name="radioNOTI" id="radioYES_1" value="Yes">
                         <label class="form-check-label" for="radioYES_1">Yes</label>
                     </div>
-                    
-                    <P>IF YES, THE OPTION BELOW WILL APPEAR</P>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
-                            <label class="form-check-label" for="radioYES_1">Every Two Weeks</label>
-                        </div>
-                        <div class="form-check">
-                            <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
-                            <label class="form-check-label" for="radioYES_1">Every Month</label>
-                        </div>
-                        <div class="form-check mb-3">
-                            <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
-                            <label class="form-check-label" for="radioYES_1">Every Two Months</label>
-                        </div>
 
                     <div class="form-check mb-3">
                         <input class="form-check-input" type="radio" name="radioNOTI" id="radioNO_1" value="No">
                         <label class="form-check-label" for="radioNO_1">No</label>
                     </div>
 
+                    <div class="mb-3">
+                        <label for="pm" class="form-label">Time interval</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
+                        <label class="form-check-label" for="radioYES_1">Every Two Weeks</label>
+                    </div>
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
+                        <label class="form-check-label" for="radioYES_1">Every Month</label>
+                    </div>
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
+                        <label class="form-check-label" for="radioYES_1">Every Two Months</label>
+                    </div>
+
                     <input type="hidden" name="formMethod" value="JPMCOrder">
                     <button type="submit" class="btn btn-info mt-3">Submit</button>
-
+                </form>
             </div>
         </div>
     </div>

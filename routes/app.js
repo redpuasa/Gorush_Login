@@ -1,5 +1,6 @@
 const express = require('express');
 const Vonage = require('@vonage/server-sdk')
+const bcrypt = require("bcrypt");
 const vonage = new Vonage({
     //apiKey:"6632d882",
     //apiSecret:"xqgTRoO9d94EdSTa"
@@ -17,11 +18,14 @@ const stdJpmcOrder = require("../models/jpmcorder_std")
 const expJpmcOrder = require("../models/jpmcorder_exp")
 const scJpmcOrder = require("../models/jpmcorder_sc")
 const stdPhcOrder = require("../models/phcorder_std")
+const scPhcOrder = require("../models/phcorder_sc")
 const { render } = require('ejs');
 const { request } = require('express');
 
 let currentUser = {};
+//let currentPatient = {};
 let patientList= [];
+
 
 router.get('/', (req, res) => {
     res.render('signup');
@@ -36,6 +40,61 @@ router.get('/addition', (req,res) => {
     res.render('addition',{
         userID: currentUser._id,
     });
+})
+
+router.get('/forgotPass', (req,res) =>{
+    res.render('forgotPass');
+})
+
+router.post('/changePass', (req,res) =>{
+    let contact_1 = req.body.code + req.body.contact_1
+    User.findOne({contact_1: contact_1}, (error, user)=>{
+        if (user){
+            res.render('changePass', {
+                contact_1:contact_1,
+                userID: user._id,
+                name: user.name,
+                icNumber: user.icNumber,
+                dob: user.dob,
+                kampong: user.kampong,
+                jalan: user.jalan,
+                simpang: user.simpang,
+                house_Number: user.house_Number,
+                contact_2: user.contact_2,
+                bruhims: user.bruhims,
+                pay_MOH: user.pay_MOH,
+                jpmc: user.jpmc,
+                pay_JPMC: user.pay_JPMC,
+                panaga: user.panaga,
+                pay_PHC: user.pay_PHC,
+            });
+            jsonString = JSON.stringify(user);
+            console.log(user)
+            console.log(jsonString)
+        }else{
+            res.render('error')
+        }
+    })
+})
+
+router.post('/changeConfirm', (req,res) =>{
+    console.log(req.body.name)
+    let password = req.body.password
+    let id = req.body.userID
+    console.log(req.body.status)
+    bcrypt.hash(password, 10, (err, hash)=>{
+        if(err) throw error
+        req.body.password = hash
+        console.log(req.body.password)
+        User.findByIdAndUpdate({_id: id},{
+            password: req.body.password, 
+            status:req.body.status
+        }, (error, user)=>{
+            if(error) throw error
+            else res.render('login')
+        })
+        console.log(req.body.status)
+    })
 })
 
 router.post('/addconfirm', (req,res) =>{
@@ -83,6 +142,7 @@ router.get('/mohorder', (req, res) => {
 
 router.get('/jpmcorder', (req, res) => {
     res.render('jpmcorder',{
+        userID :currentUser._id,
         name: currentUser.name,
         icNumber: currentUser.icNumber,
         dob: currentUser.dob,
@@ -93,10 +153,8 @@ router.get('/jpmcorder', (req, res) => {
         contact_1: currentUser.contact_1,
         contact_2: currentUser.contact_2,
         jpmc: currentUser.jpmc,
-    });
+    })
 })
-
-
 
 router.get('/phcorder', (req, res) => {
     res.render('phcorder',{
@@ -190,19 +248,17 @@ router.post("/login", (req,res) =>{
 router.post("/dashboard", (req,res) =>{
     let contact_1 = req.body.code + req.body.contact_1
     User.authenticate(contact_1, req.body.password, (error, user) =>{
-        let patientList = [];
+        patientList = [];
         Patient.find({}, (error, patients) =>{
             patients.forEach(function(patient){
                 patientList.push(patient)
-                console.log(patient.name)
-                console.log(patient.userID)
                 })
-                console.log(patientList)
         let status = user.status;
+        console.log(user)
         if(status === "Active"){
             if(!error || user){
                 res.render("dash", {
-                    contact_1:req.body.contact_1,
+                    contact_1:contact_1,
                     userID: user._id,
                     name: user.name,
                     icNumber: user.icNumber,
@@ -222,6 +278,8 @@ router.post("/dashboard", (req,res) =>{
                 })
                 //console.log(currentUser)
                 //console.log(patientList)
+                //currentPatient = patientList
+                //console.log (patientList)
                 currentUser = user;
             }else {
                 res.render("error")
@@ -257,6 +315,9 @@ router.post('/confirm', (req, res) => {
         if(req.body.tod === "Standard"){
             standardPHC(req,res);
         }
+        else if(req.body.tod === "Self-Collect"){
+            selfPHC(req,res);
+        }
     }
 })
 
@@ -276,7 +337,6 @@ router.post('/editconfirm', (req,res) => {
         name: req.body.name,
         icNumber: req.body.icNumber,
         dob: req.body.dob,
-        password: req.body.password,
         kampong: req.body.address_1,
         jalan: req.body.address_2,
         simpang: req.body.address_3,
@@ -289,7 +349,7 @@ router.post('/editconfirm', (req,res) => {
         pay_JPMC: req.body.radioJPMC,
         panaga: req.body.panaga,
         pay_PHC: req.body.radioPHC,
-    }, (err,docs) => {
+    }, (err,users) => {
         if(err){
             console.log(err)
             res.render('error')
@@ -547,6 +607,39 @@ function standardPHC(req,res){
         dateSC: req.body.dateSC,
     });
     sporder.save(function (err) {
+    if (err) {
+    	if (err.name === "MongoError" && err.code === 11000) {
+    		res.render('error', {
+    			title: 'Error page',
+                head: 'Invalid Order',
+                message: 'Please try again',
+    			href: "signup"
+    		});
+    	}
+    } else {
+    	res.render('confirm');
+    }
+    });
+}
+
+function selfPHC(req,res){
+    let scporder = new scPhcOrder({
+        name: currentUser.name,
+        icNumber: req.body.icNumber,
+        jpmc: req.body.jpmc,
+        kampong: req.body.address_1,
+        jalan: req.body.address_2,
+        simpang: req.body.address_3,
+        house_Number: req.body.address_4,
+        contact_1: req.body.contact_1,
+        contact_2: req.body.contact_2,
+        qo: req.body.qo,
+        tod: req.body.tod,
+        pm: req.body.pm,
+        re: req.body.re,
+        dateSC: req.body.dateSC,
+    });
+    scporder.save(function (err) {
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {

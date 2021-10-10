@@ -38,74 +38,45 @@
                 <form method="POST" action="/editconfirm">
                     <div class="mb-3">
                         <label for="name" class="form-label">Name</label>
-                        <input type="text" class="form-control" name="name" id="name" value="{{ name }}" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
+                        <input type="text" class="form-control" name="name" id="name" value="<%= name %>" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
                     </div>
 
                     <div class="mb-3">
                         <label for="icNumber" class="form-label">IC-Number</label>
-                        <input type="text" class="form-control" name="icNumber" id="icNumber" value="{{ icNumber }}">
+                        <input type="text" class="form-control" name="icNumber" id="icNumber" value="<%= icNumber %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="passport" class="form-label">Passport</label>
+                        <input type="text" class="form-control" name="passport" id="passport" value="<%= passport %>">
                     </div>
 
                     <div class="mb-3">
                         <label for="dob" class="form-label">Date of Birth</label>
-                        <input type="date" class="form-control" name="dob" id="dob" value="{{ dob }}">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="password" class="form-label">Password</label>
-                        <input type="password" class="form-control" name="password" id="password" 
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" 
-                        title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" 
-                        placeholder="Enter Password" required>
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="re_password" class="form-label">Re-enter Password</label>
-                        <input type="password" class="form-control" id="re_password" 
-                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" 
-                        title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" 
-                        placeholder="Re-enter Password" required>
+                        <input type="date" class="form-control" name="dob" id="dob" value="<%= dob %>">
                     </div>
 
                     <div class="mb-3">
                         <label for="address_1" class="form-label">Delivery Address</label>
-                        <input type="text" class="form-control" name="address_1" id="address_1" value="{{ kampong }}">
+                        <input type="text" class="form-control" name="address_1" id="address_1" value="<%= kampong %>">
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="address_2" id="address_2" value="{{jalan}}">
+                        <input type="text" class="form-control" name="address_2" id="address_2" value="<%= jalan %>">
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="address_3" id="address_3" value="{{simpang}}">
+                        <input type="text" class="form-control" name="address_3" id="address_3" value="<%= simpang %>">
                     </div>
 
                     <div class="mb-3">
-                        <input type="text" class="form-control" name="address_4" id="address_4" value="{{house_Number}}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="hidden" id="code" name="code">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="contact_1" class="form-label">Contact Number</label>
-                        <input type="text" class="form-control" name="contact_1" id="contact_1" value="{{contact_1}}">
-                    </div>
-
-                    <div class="form-group">
-                        <input type="hidden" id="code_2" name="code_2">
-                    </div>
-
-                    <div class="mb-3">
-                        <label for="contact_2" class="form-label">Additional Contact Number</label>
-                        <input type="text" class="form-control" name="contact_2" id="contact_2" value="{{contact_2}}">
+                        <input type="text" class="form-control" name="address_4" id="address_4" value="<%= house_Number %>">
                     </div>
 
                     <label>MOH LOGO HERE [MINI]</label>
                     <div class="mb-3">
                         <label for="bruhims" class="form-label">Bru-HIMs Number</label>
-                        <input type="text" class="form-control" name="bruhims" id="bruhims" value="{{bruhims}}" minlength="10" maxlength="10">
+                        <input type="text" class="form-control" name="bruhims" id="bruhims" value="<%= bruhims %>" minlength="10" maxlength="10">
                     </div>
                     
                     <div class="form-check my-3">
@@ -125,7 +96,7 @@
                     <label>JPMC/PJSC LOGO HERE [MINI]</label>
                     <div class="mb-3">
                         <label for="jpmc" class="form-label">Patient Number</label>
-                        <input type="text" class="form-control" name="jpmc" id="jpmc" value="{{jpmc}}" minlength="6" maxlength="8">
+                        <input type="text" class="form-control" name="jpmc" id="jpmc" value="<%= jpmc %>" minlength="6" maxlength="8">
                     </div>
 
                     <div class="form-check my-3">
@@ -145,7 +116,7 @@
                     <label>PHC LOGO HERE [MINI]</label>
                     <div class="mb-3">
                         <label for="panaga" class="form-label">Patient Number</label>
-                        <input type="text" class="form-control" name="panaga" id="panaga" value={{panaga}}>
+                        <input type="text" class="form-control" name="panaga" id="panaga" value="<%= panaga %>"">
                     </div>
 
                     <div class="form-check my-3">

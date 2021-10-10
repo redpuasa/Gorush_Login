@@ -11,6 +11,9 @@ const std_JpmcOrderSchema  = new mongoose.Schema({
     icNumber:{
         type: String,
     },
+    passport:{
+        type: String,
+    },
     address:{
         type: String,
     },

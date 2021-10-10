@@ -1,7 +1,6 @@
 const mongoose = require("mongoose");
 const bcrypt = require("bcrypt");
-const Patient = require("../models/patient")
-let patientList = []
+
 const UserSchema  = new mongoose.Schema({
     name: {
         type: String,
@@ -21,7 +20,8 @@ const UserSchema  = new mongoose.Schema({
         type: String,
     },
     dob:{
-        type: String
+        type: String,
+        required: true,
     },
     kampong:{
         type: String,
@@ -47,6 +47,7 @@ const UserSchema  = new mongoose.Schema({
         type: Number,
 		required: true,
 		trim: true,
+        unique: true,
     },
     contact_2:{
         type: Number,

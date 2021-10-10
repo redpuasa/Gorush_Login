@@ -11,6 +11,9 @@ const sc_MohOrderSchema  = new mongoose.Schema({
     icNumber:{
         type: String,
     },
+    passport:{
+        type: String,
+    },
     contact_1:{
         type: String,
     },
