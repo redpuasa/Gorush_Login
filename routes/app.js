@@ -47,32 +47,64 @@ router.get('/forgotPass', (req,res) =>{
 })
 
 router.post('/changePass', (req,res) =>{
-    let contact_1 = req.body.code + req.body.contact_1
-    User.findOne({contact_1: contact_1}, (error, user)=>{
-        if (user){
-            res.render('changePass', {
-                contact_1:contact_1,
-                userID: user._id,
-                name: user.name,
-                icNumber: user.icNumber,
-                dob: user.dob,
-                kampong: user.kampong,
-                jalan: user.jalan,
-                simpang: user.simpang,
-                house_Number: user.house_Number,
-                contact_2: user.contact_2,
-                bruhims: user.bruhims,
-                pay_MOH: user.pay_MOH,
-                jpmc: user.jpmc,
-                pay_JPMC: user.pay_JPMC,
-                panaga: user.panaga,
-                pay_PHC: user.pay_PHC,
-            });
-            jsonString = JSON.stringify(user);
-            console.log(user)
-            console.log(jsonString)
-        }else{
+    let contact_1 = req.body.contact_1
+    vonage.verify.check({
+        request_id: req.body.requestId,
+        code: req.body.code_vn,
+    }, (error,result) => {
+        console.log(contact_1)
+        if(result.status != 0){
             res.render('error')
+            console.log(result.status)
+        }else{    
+            console.log(result.status)
+            User.findOne({contact_1: contact_1}, (error, user)=>{
+                if (user){
+                    res.render('changePass', { 
+                        requestId: result.request_id, 
+                        contact_1: contact_1,
+                        userID: user._id,
+                        name: user.name,
+                        icNumber: user.icNumber,
+                        dob: user.dob,
+                        kampong: user.kampong,
+                        jalan: user.jalan,
+                        simpang: user.simpang,
+                        house_Number: user.house_Number,
+                        contact_2: user.contact_2,
+                        bruhims: user.bruhims,
+                        pay_MOH: user.pay_MOH,
+                        jpmc: user.jpmc,
+                        pay_JPMC: user.pay_JPMC,
+                        panaga: user.panaga,
+                        pay_PHC: user.pay_PHC,
+                    })
+                    jsonString = JSON.stringify(user);
+                    console.log(jsonString)
+                }else{
+                    res.render('error')
+                }
+            })
+        }
+    })
+    console.log(contact_1) 
+})
+
+router.post("/validationPass", (req,res)=> {
+    let contact_1 = req.body.code + req.body.contact_1
+    console.log(contact_1)
+    vonage.verify.request({
+        number: contact_1,//change to user.contact_1
+        brand: "Go Rush"
+    }, (err,result) => {
+        console.log(result.status)
+        if(result.status != 0){
+            res.render("error")
+        }else{
+            res.render('validationPass', { 
+                requestId: result.request_id, 
+                contact_1: contact_1,
+            })
         }
     })
 })
@@ -200,8 +232,8 @@ router.post('/validation', (req, res) => {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
     			title: 'Error page',
-                head: 'Username already exist',
-                message: 'Please use a different username',
+                head: 'This contact number already exist',
+                message: 'Please use a different differenct contact number or contact us',
     			href: "signup"
     		});
     	}
