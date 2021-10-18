@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Datepicker JavaScript -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--<script>
+        $( function() {
+        $( "#dob" ).datepicker({dateFormat: "mm-dd-yy", changeMonth: true,
+            changeYear: true, yearRange: '1900:2021'});
+        } );
+    </script>-->
+
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+
+                <form method="POST" action="/changeConfirm">
+                    <input type="text" class="form-control" name="userID" id="userID" value="<%= userID %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="name" id="name" value="<%= name %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="IcNumber" id="icNumber" value="<%= icNumber %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="jpmc" id="jpmc" value="<%= jpmc %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="dob" id="dob" value="<%= dob %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_1" id="address_1" value="<%= kampong %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_2" id="address_2" value="<%= jalan %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_3" id="address_3" value="<%= simpang %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="address_4" id="address_4" value="<%= house_Number %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="contact_2" id="contact_2" value="<%= contact_2  %>" readonly="readonly" hidden>
+                    <input type="text" name="status" value="Active" hidden>
+                    
+                    <div class="col-sm-6">
+                        <p>Contact Number:&nbsp;<%= contact_1 %></p>
+                    </div>
+
+                    <input type="text" class="form-control" name="contact_1" id="contact_1" value="<%= contact_1 %>" readonly="readonly" hidden>
+                    
+                    <div class="mb-3">
+                        <label for="password" class="form-label">New Password</label>
+                        <input type="password" class="form-control" name="password" id="password" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" 
+                        title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" 
+                        placeholder="Enter Password" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="re_password" class="form-label">Re-enter New Password</label>
+                        <input type="password" class="form-control" id="re_password" 
+                        pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?=.*?[#?!@$%^&*-\]\[]).{8,}" 
+                        title="Must contain at least one number, one uppercase letter and lowercase letter and one special character, and at least 8 or more characters" 
+                        placeholder="Re-enter Password" required>
+                    </div>
+
+                    <button type="submit" class="btn btn-info mt-3">Submit</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+</html>
+

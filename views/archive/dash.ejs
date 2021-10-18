@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration Form</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+    <!-- Custom styles -->
+    <link href="css/style.css" rel="stylesheet">
+
+</head>
+<body>
+    <div class="container"> 
+        <h1 class="mx-auto">Patient's Profile</h1>
+        <a class="btn text-nowrap btn-info"  title="" role="button" href="/edit">edit</a>
+        <!--<a class="btn text-nowrap btn-info"  title="" role="button" href="/addition">add member</a>-->
+        <div class="row">
+            <div class="col-sm-6">
+                <!-- Patient profile name to dob -->
+                <p class="hidden">userID: <%= userID %></p>
+                
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Name:&nbsp; <%= name %> </p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>IC Number:&nbsp;<%= icNumber %></p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Date of Birth:&nbsp;<%= dob %></p>
+                    </div>
+                </div>
+                <!-- ./Patient profile name to dob -->
+
+                <hr>
+
+                <!-- Contact -->
+                <div class="row">
+                    <div class="col-sm-6">
+                        <p>Contact Number:&nbsp;<%= contact_1 %></p>
+                    </div>
+                    <div class="col-sm-6">
+                        <p>Additional Contact Number:&nbsp;<%= contact_2  %></p>
+                    </div>
+                </div>
+                <!-- ./ Contact -->
+
+                <hr>
+
+                <!-- Address -->
+                <div class="row">
+                    <div class="col-sm-12">
+                        <p>Address:</p>
+                        <p><%= house_Number %>, Simpang&nbsp;<%= simpang %>, Jalan&nbsp;<%= jalan %>, Kampong&nbsp;<%= kampong %></p>
+                    </div>
+                </div>
+                <!-- ./ Address -->
+
+                <hr>
+
+                <div class="row">
+
+                    <div class="col-sm-4">
+                        <h2>MOH</h2>
+                        <p><%= bruhims %></p>
+                        <p><%= pay_MOH %></p>
+                        <a class="btn text-nowrap btn-info"  title="" role="button" href="/mohorder">Order Here</a>
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h2>JPMC/PJSC</h2>
+                        <p><%= jpmc %></p>
+                        <p><%= pay_JPMC %></p>
+                        <a class="btn text-nowrap btn-info"  title="" role="button" href="/jpmcorder">Order Here</a> 
+                    </div>
+
+                    <div class="col-sm-4">
+                        <h2>PANAGA</h2>
+                        <p><%= panaga %></p>
+                        <p><%= pay_PHC %></p>
+                        
+                        <a class="btn text-nowrap btn-info"  title="" role="button" href="/phcorder">Order Here</a> 
+                    </div>
+                </div>
+
+                <hr>
+<!--
+                <h3>Additional Patient here</h3>
+                <% patient.forEach(function(patient) { %>
+                    <% if (userID == patient.userID) { %>
+                    <p>Patient Name: <%= patient.name %></p>
+                    <p>UserID: <%= patient.userID %></p>
+                <% }}) %>-->
+            </div>
+        </div>
+    </div>
+</body>
+</html>

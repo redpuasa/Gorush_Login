@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registration</title>
+
+    <!-- Bootstrap core CSS -->
+    <link rel="stylesheet" 
+            href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" 
+            integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" 
+            crossorigin="anonymous">
+    <!-- Custom styles -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/css/intlTelInput.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/intl-tel-input/17.0.8/js/intlTelInput.min.js"></script>
+    
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    
+    <!-- Datepicker JavaScript -->
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+    <link rel="stylesheet" href="/resources/demos/style.css">
+    <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+    <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
+    <!--<script>
+        $( function() {
+        $( "#dob" ).datepicker({dateFormat: "mm-dd-yy", changeMonth: true,
+            changeYear: true, yearRange: '1900:2021'});
+        } );
+    </script>-->
+
+</head>
+<body>
+    <div class="container my-5">
+        <div class="row">
+            <div class="col-sm-6 mx-auto">
+            
+                <form method="POST" action="/editconfirm">
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Name</label>
+                        <input type="text" class="form-control" name="name" id="name" value="<%= name %>" oninput="let p=this.selectionStart;this.value=this.value.toUpperCase();this.setSelectionRange(p, p);" required>
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="icNumber" class="form-label">IC-Number</label>
+                        <input type="text" class="form-control" name="icNumber" id="icNumber" value="<%= icNumber %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="passport" class="form-label">Passport</label>
+                        <input type="text" class="form-control" name="passport" id="passport" value="<%= passport %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="dob" class="form-label">Date of Birth</label>
+                        <input type="date" class="form-control" name="dob" id="dob" value="<%= dob %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <label for="address_1" class="form-label">Delivery Address</label>
+                        <input type="text" class="form-control" name="address_1" id="address_1" value="<%= kampong %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_2" id="address_2" value="<%= jalan %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_3" id="address_3" value="<%= simpang %>">
+                    </div>
+
+                    <div class="mb-3">
+                        <input type="text" class="form-control" name="address_4" id="address_4" value="<%= house_Number %>">
+                    </div>
+
+                    <label>MOH LOGO HERE [MINI]</label>
+                    <div class="mb-3">
+                        <label for="bruhims" class="form-label">Bru-HIMs Number</label>
+                        <input type="text" class="form-control" name="bruhims" id="bruhims" value="<%= bruhims %>" minlength="10" maxlength="10">
+                    </div>
+                    
+                    <div class="form-check my-3">
+                        <p>Are you a paying patient?</p>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioMOH" id="radioYes" value="Yes">
+                        <label class="form-check-label" for="radioYes">Yes</label>
+                    </div>
+                    
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioMOH" id="radioNo" value="No">
+                        <label class="form-check-label" for="radioNo">No</label>
+                    </div>
+
+                    <label>JPMC/PJSC LOGO HERE [MINI]</label>
+                    <div class="mb-3">
+                        <label for="jpmc" class="form-label">Patient Number</label>
+                        <input type="text" class="form-control" name="jpmc" id="jpmc" value="<%= jpmc %>" minlength="6" maxlength="8">
+                    </div>
+
+                    <div class="form-check my-3">
+                        <p>Are you a paying patient?</p>                    
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioJPMC" id="radioYes_1" value="Yes">
+                        <label class="form-check-label" for="radioYes_1">Yes</label>
+                    </div>
+
+                    <div class="form-check mb-3">
+                        <input class="form-check-input" type="radio" name="radioJPMC" id="radioNo_1" value="No">
+                        <label class="form-check-label" for="radioNo_1">No</label>
+                    </div>
+
+                    <label>PHC LOGO HERE [MINI]</label>
+                    <div class="mb-3">
+                        <label for="panaga" class="form-label">Patient Number</label>
+                        <input type="text" class="form-control" name="panaga" id="panaga" value="<%= panaga %>"">
+                    </div>
+
+                    <div class="form-check my-3">
+                        <p>Are you a paying patient?</p>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioPHC" id="radioYes_2" value="Yes">
+                        <label class="form-check-label" for="radioYes_2">Yes</label>
+                    </div>
+
+                    <div class="form-check">
+                        <input class="form-check-input" type="radio" name="radioPHC" id="radioNo_2" value="No">
+                        <label class="form-check-label" for="radioNo_2">No</label>
+                    </div>
+
+                    <input type="hidden" name="formMethod" value="singup">
+                    <button type="submit" class="btn btn-info mt-3">Save</button>
+
+                </form>
+            </div>
+        </div>
+    </div>
+</body>
+
+<!-- Input Mask JavaScript -->
+<script src="https://unpkg.com/imask"></script>
+
+<script>
+let inputElement1 = document.getElementById('bruhims');
+let inputElement2 = document.getElementById('icNumber');
+
+var patternMask = IMask(inputElement1, {
+  mask: '{BN}00000000',
+});
+
+var patternMask = IMask(inputElement2, {
+  mask: '00000000',
+});
+</script>
+
+<script src="js/phonecode.js"></script>
+<!-- Bootstrap core JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.min.js" integrity="sha512-XKa9Hemdy1Ui3KSGgJdgMyYlUg1gM+QhL6cnlyTe2qzMCYm4nAZ1PsVerQzTTXzonUR+dmswHqgJPuwCq1MaAg==" crossorigin="anonymous"></script>
+<!-- Plugin JavaScript -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-easing/1.4.1/jquery.easing.min.js" integrity="sha512-0QbL0ph8Tc8g5bLhfVzSqxe9GERORsKhIn1IrpxDAgUsbBGz/V7iSav2zzW325XGd1OMLdL4UiqRJj702IeqnQ==" crossorigin="anonymous"></script>
+</html>
+
