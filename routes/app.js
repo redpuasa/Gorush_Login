@@ -31,6 +31,10 @@ router.get('/', (req, res) => {
     res.render('signup');
 })
 
+router.get('/logout', (req,res) => {
+    res.render('www.gorushbn.com')
+})
+
 router.get('/login', (req, res) => {
     res.render('login');
 })
