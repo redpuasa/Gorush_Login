@@ -14,8 +14,25 @@ const std_MohOrderSchema  = new mongoose.Schema({
     passport:{
         type: String,
     },
-    address:{
+    kampong:{
         type: String,
+        required: true,
+        trim: true
+    },
+    jalan:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    simpang:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    house_Number:{
+        type: String,
+        required: true,
+        trim: true
     },
     contact_1:{
         type: String,
@@ -29,13 +46,25 @@ const std_MohOrderSchema  = new mongoose.Schema({
     qo:{
         type: String,
     },
-    tod:{
+    radioTOD:{
+        type: String,
+    },
+    doctor:{
+        type: String,
+    },
+    radioDistrict:{
         type: String,
     },
     pm:{
         type: String,
     },
     re:{
+        type: String,
+    },
+    radioNoti:{
+        type: String,
+    },
+    radioDuration:{
         type: String,
     },
     dateSubmit:{

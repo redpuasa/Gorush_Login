@@ -165,6 +165,7 @@ router.get('/mohorder', (req, res) => {
     res.render('mohorder',{
         name: currentUser.name,
         icNumber: currentUser.icNumber,
+        passport: currentUser.passport,
         dob: currentUser.dob,
         kampong: currentUser.kampong,
         jalan: currentUser.jalan,
@@ -215,6 +216,7 @@ router.post('/validation', (req, res) => {
     let user = new User({
         name: req.body.name,
         icNumber: req.body.icNumber,
+        passport: req.body.passport,
         dob: req.body.dob,
         password: req.body.password,
         kampong: req.body.address_1,
@@ -298,6 +300,7 @@ router.post("/dashboard", (req,res) =>{
                     userID: user._id,
                     name: user.name,
                     icNumber: user.icNumber,
+                    passport: user.passport,
                     dob: user.dob,
                     kampong: user.kampong,
                     jalan: user.jalan,
@@ -329,14 +332,14 @@ router.post("/dashboard", (req,res) =>{
 
 router.post('/confirm', (req, res) => {  
     if(req.body.formMethod === "MOHOrder"){
-        console.log(req.body.tod)
-        if(req.body.tod === "Standard"){
+        console.log(req.body.radioTOD)
+        if(req.body.radioTOD === "Standard"){
             standardMOH(req,res);
-        }else if(req.body.tod === "Express"){
+        }else if(req.body.radioTOD === "Express"){
             expressMOH(req,res);
-        }else if(req.body.tod === "Immediate"){
+        }else if(req.body.radioTOD === "Immediate"){
             immediateMOH(req,res);
-        }else if(req.body.tod === "Self-Collect"){
+        }else if(req.body.radioTOD === "Self-Collect"){
             selfMOH(req,res);
         }
     }else if(req.body.formMethod === "JPMCOrder"){
@@ -398,6 +401,7 @@ function standardMOH(req,res){
     let smorder = new stdMohOrder({
         name: currentUser.name,
         icNumber: req.body.icNumber,
+        passport: req.body.passport,
         bruhims: req.body.bruhims,
         kampong: req.body.address_1,
         jalan: req.body.address_2,
@@ -406,6 +410,10 @@ function standardMOH(req,res){
         contact_1: req.body.contact_1,
         contact_2: req.body.contact_2,
         qo: req.body.qo,
+        doctor: req.body.doctor,
+        radioDistrict: req.body.radioDistrict,
+        radioNOTI: req.body.radioNOTI,
+        radioDURATION: req.body.radioDURATION,
         tod: req.body.tod,
         pm: req.body.pm,
         re: req.body.re,
