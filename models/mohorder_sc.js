@@ -14,8 +14,28 @@ const sc_MohOrderSchema  = new mongoose.Schema({
     passport:{
         type: String,
     },
+    kampong:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    jalan:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    simpang:{
+        type: String,
+        trim: true
+    },
+    house_Number:{
+        type: String,
+        required: true,
+        trim: true
+    },
     contact_1:{
         type: String,
+        required: true,
     },
     Contact_2:{
         type: String,
@@ -26,7 +46,22 @@ const sc_MohOrderSchema  = new mongoose.Schema({
     qo:{
         type: String,
     },
-    tod:{
+    radioTOD:{
+        type: String,
+    },
+    BNHC:{
+        type: String,
+    },
+    TUHC:{
+        type: String,
+    },
+    TEHC:{
+        type: String,
+    },
+    BHC:{
+        type: String,
+    },
+    radioDistrict:{
         type: String,
     },
     pm:{
@@ -35,14 +70,19 @@ const sc_MohOrderSchema  = new mongoose.Schema({
     re:{
         type: String,
     },
+    radioNOTI:{
+        type: String,
+    },
+    radioDURATION:{
+        type: String,
+    },
+    scDate:{
+        type: String,
+    },
     dateSubmit:{
         type: Date,
         default: Date.now() + 8*60*60*1000, //+8 hours according to Brunei Time
     },
-    dateSc:{
-        type: String,
-    }
 });
-
 const sc_MohOrder = mongoose.model("sc_MohOrder", sc_MohOrderSchema); 
 module.exports = sc_MohOrder;

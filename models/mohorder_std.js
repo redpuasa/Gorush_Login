@@ -26,7 +26,6 @@ const std_MohOrderSchema  = new mongoose.Schema({
     },
     simpang:{
         type: String,
-        required: true,
         trim: true
     },
     house_Number:{
@@ -36,6 +35,7 @@ const std_MohOrderSchema  = new mongoose.Schema({
     },
     contact_1:{
         type: String,
+        required: true,
     },
     Contact_2:{
         type: String,
@@ -49,7 +49,16 @@ const std_MohOrderSchema  = new mongoose.Schema({
     radioTOD:{
         type: String,
     },
-    doctor:{
+    BNHC:{
+        type: String,
+    },
+    TUHC:{
+        type: String,
+    },
+    TEHC:{
+        type: String,
+    },
+    BHC:{
         type: String,
     },
     radioDistrict:{
@@ -61,10 +70,13 @@ const std_MohOrderSchema  = new mongoose.Schema({
     re:{
         type: String,
     },
-    radioNoti:{
+    radioNOTI:{
         type: String,
     },
-    radioDuration:{
+    radioDURATION:{
+        type: String,
+    },
+    scDate:{
         type: String,
     },
     dateSubmit:{
