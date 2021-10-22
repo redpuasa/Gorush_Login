@@ -14,8 +14,24 @@ const std_PanagaOrderSchema  = new mongoose.Schema({
     passport:{
         type: String,
     },
-    address:{
+    kampong:{
         type: String,
+        required: true,
+        trim: true
+    },
+    jalan:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    simpang:{
+        type: String,
+        trim: true
+    },
+    house_Number:{
+        type: String,
+        required: true,
+        trim: true
     },
     contact_1:{
         type: String,
@@ -29,13 +45,22 @@ const std_PanagaOrderSchema  = new mongoose.Schema({
     qo:{
         type: String,
     },
-    tod:{
+    radioTOD:{
         type: String,
     },
     pm:{
         type: String,
     },
     re:{
+        type: String,
+    },
+    radioNOTI:{
+        type: String,
+    },
+    radioDURATION:{
+        type: String,
+    },
+    scDate:{
         type: String,
     },
     dateSubmit:{

@@ -14,8 +14,24 @@ const sc_PanagaOrderSchema  = new mongoose.Schema({
     passport:{
         type: String,
     },
-    address:{
+    kampong:{
         type: String,
+        required: true,
+        trim: true
+    },
+    jalan:{
+        type: String,
+        required: true,
+        trim: true
+    },
+    simpang:{
+        type: String,
+        trim: true
+    },
+    house_Number:{
+        type: String,
+        required: true,
+        trim: true
     },
     contact_1:{
         type: String,

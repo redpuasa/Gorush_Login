@@ -237,9 +237,9 @@ router.post('/validation', (req, res) => {
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'This contact number already exist',
-                message: 'Please use a different differenct contact number or contact us',
+    			error_code: '11000',
+                head: 'Invalid_User_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
     			href: "signup"
     		});
     	}
@@ -423,10 +423,10 @@ function standardMOH(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -456,10 +456,10 @@ function expressMOH(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -489,10 +489,10 @@ function immediateMOH(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -522,10 +522,10 @@ function selfMOH(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -555,10 +555,10 @@ function standardJPMC(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -588,10 +588,10 @@ function expressJPMC(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -621,10 +621,10 @@ function selfJPMC(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -654,10 +654,10 @@ function standardPHC(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
@@ -687,10 +687,10 @@ function selfPHC(req,res){
     if (err) {
     	if (err.name === "MongoError" && err.code === 11000) {
     		res.render('error', {
-    			title: 'Error page',
-                head: 'Invalid Order',
-                message: 'Please try again',
-    			href: "signup"
+    			error_code: '11000',
+                head: 'Invalid_Order_MongoError-11000',
+                message: 'Please logout and try again. If the error still persist, please contact our customer support +6732332065 via WhatsApp',
+    			href: "login"
     		});
     	}
     } else {
