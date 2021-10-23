@@ -24,11 +24,14 @@
                 
                 <!-- Patient profile name to dob -->
                 <div class="row">
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <p>Name:&nbsp; <%= name %> </p>
                     </div>
-                    <div class="col-sm-6">
+                    <div class="col-sm-4">
                         <p>IC Number:&nbsp;<%= icNumber %></p>
+                    </div>
+                    <div class="col-sm-4">
+                        <p>Passort Number:&nbsp;<%= passport %></p>
                     </div>
                 </div>
 
@@ -76,6 +79,7 @@
                 <form method="POST" action="/confirm">
                     <input type="text" class="form-control" name="name" id="name" value="<%= name %>" readonly="readonly" hidden>
                     <input type="text" class="form-control" name="name" id="icNumber" value="<%= icNumber %>" readonly="readonly" hidden>
+                    <input type="text" class="form-control" name="passport" id="passport" value="<%= passport %>" readonly="readonly" hidden>
                     <input type="text" class="form-control" name="jpmc" id="jpmc" value="<%= jpmc %>" readonly="readonly" hidden>
                     <input type="text" class="form-control" name="dob" id="dob" value="<%= dob %>" readonly="readonly" hidden>
                     <input type="text" class="form-control" name="address_1" id="address_1" value="<%= kampong %>" readonly="readonly" hidden>
@@ -180,16 +184,16 @@
                     </div>
 
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
-                        <label class="form-check-label" for="radioYES_1">Every Two Weeks</label>
+                        <input class="form-check-input" type="radio" name="radioDURATION" id="radioTW" value="Yes">
+                        <label class="form-check-label" for="radioTW">Every Two Weeks</label>
                     </div>
                     <div class="form-check">
-                        <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
-                        <label class="form-check-label" for="radioYES_1">Every Month</label>
+                        <input class="form-check-input" type="radio" name="radioDURATION" id="radioOM" value="Yes">
+                        <label class="form-check-label" for="radioOM">Every Month</label>
                     </div>
                     <div class="form-check mb-3">
-                        <input class="form-check-input" type="radio" name="radioPAY" id="radioYES_1" value="Yes">
-                        <label class="form-check-label" for="radioYES_1">Every Two Months</label>
+                        <input class="form-check-input" type="radio" name="radioDURATION" id="radioTM" value="Yes">
+                        <label class="form-check-label" for="radioTM">Every Two Months</label>
                     </div>
 
                     <input type="hidden" name="formMethod" value="JPMCOrder">
